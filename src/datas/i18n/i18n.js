@@ -1,6 +1,6 @@
 import en from "./en";
 import vn from "./vn";
 
-export default language => {
+export const GetTranslation = language => {
 	return language === "en" ? en : vn;
 };
