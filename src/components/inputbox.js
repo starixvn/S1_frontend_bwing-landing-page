@@ -14,6 +14,7 @@ export default props => {
 						: props.value
 				}
 			/>
+			{props.tip ? <div className="tip active">{props.tip}</div> : null}
 		</>
 	);
 };

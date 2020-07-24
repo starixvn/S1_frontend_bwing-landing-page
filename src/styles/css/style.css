@@ -7,6 +7,9 @@ html,body{
   font-size: 12px;
   font-family: sans-serif;
 }
+body > div,body > div > div{
+  height: 100%;
+}
 .wallpaper{
   width: 100%;
   height: 100%;
@@ -105,7 +108,7 @@ button{
 .agree{
   display: flex;
   align-items: flex-start;
-  margin: 10px 0;
+  margin: 0 0 10px;
 }
 .agree input{
     margin: 0 5px 0 0;
@@ -124,6 +127,8 @@ input{
 .eye,.eye-off{
   position: relative;
   cursor: pointer;
+  margin-top: 0;
+  transform: translateY(-30px);
 }
 .eye:after{
   background: url(../img/remove_red_eye.png);
@@ -133,7 +138,7 @@ input{
   display: block;
   position: absolute;
   right: 2px;
-  transform: translateY(8px);
+  transform: translateY(-25%);
 }
 .eye-off:after{
   background: url(../img/visibility_off.png);
@@ -143,7 +148,11 @@ input{
   display: block;
   position: absolute;
   right: 2px;
-  transform: translateY(8px);
+  transform: translateY(-25%);
+}
+.tip{
+  color: red;
+  margin-bottom: 5px;
 }
 @media screen and (max-width:767px) {
   img{
@@ -157,10 +166,14 @@ input{
     height: calc(100% - 30px);
     margin-top: 0px;
     border-radius: 0px;
-    padding: 30px 20px 0;
+    padding: 20px 20px 0;
+    justify-content: center;
   }
   .title {
     transform: scale(.8);
-    margin: 10px 0;
+    margin: 0;
+  }
+  .info{
+    width: 80vw;
   }
 }

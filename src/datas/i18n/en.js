@@ -1,6 +1,6 @@
 export default {
 	lbl_JoinNow: "Join Now",
-	lbl_Deposit: "Deposit",
+	lbl_Deposit: "DEPOSIT",
 	lbl_ToGet: "TO GET",
 	lbl_Register: "REGISTER",
 	lbl_Username: "Username",
@@ -18,5 +18,10 @@ export default {
 	msg_PasswordLength: "Password must between 6 and 18 characters long.",
 	msg_PasswordVaildate:
 		"6-18 alphanumeric (A-Z, a-z, 0-9) characters or special characters @$*!%#?&",
-	msg_MailWrongFormat: "Mail Format is wrong."
+	msg_MailWrongFormat: "Mail Format is wrong.",
+	lbl_Check18TCTooltip:
+		"Please click the above checkbox to confirm the account registration requirements",
+	msg_UsernameNotAvailable: "Username is no longer available.",
+	msg_MailExisted: "Mail already exists.",
+	lbl_Millions: "MILLIONS"
 };
