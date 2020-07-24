@@ -135,14 +135,14 @@ export default () => {
 						<span>{_i18n["lbl_Deposit"]}</span>
 						<span>XXX</span>
 					</div>
-					{/* <div>
-						<span>{_i18n("lbl_ToGet")}</span>
+					<div>
+						<span>{_i18n["lbl_ToGet"]}</span>
 						<span>YYY</span>
-					</div> */}
+					</div>{" "}
 				</div>
-				{/* <div className="info">
+				<div className="info">
 					<div className="smallTitle language">
-						{_i18n("lbl_Register")}
+						{_i18n["lbl_Register"]}
 						<a onClick={changeLang.bind(this, "en")}>
 							<img src={enFlag} alt="" />
 						</a>
@@ -150,14 +150,14 @@ export default () => {
 							<img src={vnFlag} alt="" />
 						</a>
 					</div>
-					<Inputbox
+					{/* <Inputbox
 						displayText={_i18n"lbl_Username")}
 						placeholder="Johndoe"
 						value={userValue.username}
 						onChange={EditField.bind(null, "username")}
 						onBlur={checkValue.bind(null, "username")}
-					/> */}
-				{/* <InputboxPsw
+					/>
+				<InputboxPsw
 						displayText={_i18n("lbl_Password")}
 						placeholder={_i18n("msg_pswRemind")}
 						showPsw={showPsw}
@@ -186,7 +186,7 @@ export default () => {
 						</span>
 					</div>
 					<button>{_i18n("lbl_JoinNow")} + YYY MILLIONS</button> */}
-				{/* </div> */}
+				</div>
 			</div>
 		</div>
 	);
