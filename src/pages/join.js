@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { languageContext } from "../components/context";
-import i18n from "../datas/i18n/i18n";
+import { languageContext, i18nContext } from "../components/context";
 import Inputbox from "../components/inputbox";
 import InputboxPsw from "../components/inputbox.password";
 import logo from "../styles/img/logo.png";
@@ -76,10 +75,10 @@ const emailCheck = (val, i18n) => {
 
 export default () => {
 	const { language } = useContext(languageContext);
+	const { i18n } = useContext(i18nContext);
 	const [userValue, setUserValue] = useState(initValue);
 	const [showPsw, setShowPsw] = useState(false);
 	const isMountedRef = useRef(null);
-	let _i18n = i18n(language);
 
 	useEffect(() => {
 		isMountedRef.current = true;
@@ -104,15 +103,15 @@ export default () => {
 		let msg = "";
 
 		if (col === "username") {
-			let result = usernameCheck(val, _i18n);
+			let result = usernameCheck(val, i18n);
 			checked = result.checked;
 			msg = result.msg;
 		} else if (col === "password") {
-			let result = passwordCheck(val, _i18n);
+			let result = passwordCheck(val, i18n);
 			checked = result.checked;
 			msg = result.msg;
 		} else if (col === "email") {
-			let result = emailCheck(val, _i18n);
+			let result = emailCheck(val, i18n);
 			checked = result.checked;
 			msg = result.msg;
 		}
@@ -132,17 +131,17 @@ export default () => {
 				<img src={logo} alt="" />
 				<div className="title">
 					<div>
-						<span>{_i18n["lbl_Deposit"]}</span>
+						<span>{i18n["lbl_Deposit"]}</span>
 						<span>XXX</span>
 					</div>
 					{/* <div>
-						<span>{_i18n("lbl_ToGet")}</span>
+						<span>{i18n("lbl_ToGet")}</span>
 						<span>YYY</span>
 					</div> */}
 				</div>
 				{/* <div className="info">
 					<div className="smallTitle language">
-						{_i18n("lbl_Register")}
+						{i18n("lbl_Register")}
 						<a onClick={changeLang.bind(this, "en")}>
 							<img src={enFlag} alt="" />
 						</a>
@@ -151,15 +150,15 @@ export default () => {
 						</a>
 					</div>
 					<Inputbox
-						displayText={_i18n"lbl_Username")}
+						displayText={i18n"lbl_Username")}
 						placeholder="Johndoe"
 						value={userValue.username}
 						onChange={EditField.bind(null, "username")}
 						onBlur={checkValue.bind(null, "username")}
 					/> */}
 				{/* <InputboxPsw
-						displayText={_i18n("lbl_Password")}
-						placeholder={_i18n("msg_pswRemind")}
+						displayText={i18n("lbl_Password")}
+						placeholder={i18n("msg_pswRemind")}
 						showPsw={showPsw}
 						inputType={`${!showPsw ? "password" : "text"}`}
 						value={userValue.password}
@@ -177,15 +176,15 @@ export default () => {
 					<div className="agree">
 						<input type="checkbox" />
 						<span>
-							{_i18n("lbl_Check18TC1")}{" "}
-							<a href="">{_i18n("lbl_TermsConditions")}</a>{" "}
-							{_i18n("lbl_Check18TC2")}{" "}
-							<a href="">{_i18n("lbl_RuleRegulations")}</a>{" "}
-							{_i18n("lbl_Check18TC3")} Bwing.{" "}
-							{_i18n("lbl_Check18TC4")}
+							{i18n("lbl_Check18TC1")}{" "}
+							<a href="">{i18n("lbl_TermsConditions")}</a>{" "}
+							{i18n("lbl_Check18TC2")}{" "}
+							<a href="">{i18n("lbl_RuleRegulations")}</a>{" "}
+							{i18n("lbl_Check18TC3")} Bwing.{" "}
+							{i18n("lbl_Check18TC4")}
 						</span>
 					</div>
-					<button>{_i18n("lbl_JoinNow")} + YYY MILLIONS</button> */}
+					<button>{i18n("lbl_JoinNow")} + YYY MILLIONS</button> */}
 				{/* </div> */}
 			</div>
 		</div>
