@@ -1,9 +1,9 @@
 export default process.env.NODE_ENV === "production"
 	? {
-			apiURL: "",
-			openURL: "",
-			imgUrl: "",
-			t_and_cURL: ""
+			apiURL: "http://stag.bwing.com",
+			openURL: "http://stag.bwing.com",
+			imgUrl: "http://stag.bwing.com",
+			t_and_cURL: "http://stag.bwing.com"
 	  }
 	: {
 			appURL: "http://localhost:3000",

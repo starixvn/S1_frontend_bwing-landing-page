@@ -11,6 +11,7 @@ import InputboxPsw from "../components/inputbox.password";
 import Checkbox from "../components/checkbox";
 import enFlag from "../styles/img/en.png";
 import vnFlag from "../styles/img/vn.png";
+import config from "../config";
 
 const initValue = {
 	username: "",
@@ -252,7 +253,7 @@ export default () => {
 						const message = res.data.message;
 
 						if (errorCode === 0) {
-							window.location.href = "http://m.n88dev.com";
+							window.location.href = config.apiURL;
 						} else if (
 							errorCode === -2 ||
 							errorCode === -5 ||

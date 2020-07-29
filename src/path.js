@@ -1,8 +1,8 @@
 export default {
-	home: {
-		root: "/"
-	},
+	// home: {
+	// 	root: "/"
+	// },
 	join: {
-		root: "join"
+		root: "/"
 	}
 };
