@@ -253,7 +253,7 @@ export default () => {
 						const message = res.data.message;
 
 						if (errorCode === 0) {
-							window.location.href = config.apiURL;
+							window.location.href = config.openURL;
 						} else if (
 							errorCode === -2 ||
 							errorCode === -5 ||

@@ -12,7 +12,7 @@ export default () => {
 		api_site_CheckSignIn().then(res => {
 			if (mounted) {
 				if (res.data.errorCode === 0) {
-					window.location.href = config.apiURL;
+					window.location.href = config.openURL;
 					setShowPage(false);
 				} else {
 					setShowPage(true);
@@ -26,7 +26,7 @@ export default () => {
 	return showPage === true ? (
 		<div className="wallpaper">
 			<div className="module">
-				<a href={config.apiURL}>
+				<a href={config.openURL}>
 					<img src={logo} alt="" />
 				</a>
 				<Promotion />
