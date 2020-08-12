@@ -2,8 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { languageContext, i18nContext } from "../components/context";
 import {
 	api_site_ExistsUserName,
-	api_site_ExistsEmail,
-	api_site_Register
+	api_site_ExistsEmail
 } from "../service/api/site";
 import TandC from "../service/t_and_c";
 import Inputbox from "../components/inputbox";
@@ -34,6 +33,7 @@ export default () => {
 	const [tip, setTip] = useState(initTip);
 	const [showPsw, setShowPsw] = useState(false);
 	const isMountedRef = useRef(null);
+	const xxxRef = useRef(null);
 
 	useEffect(() => {
 		isMountedRef.current = true;
@@ -239,105 +239,130 @@ export default () => {
 				checkbox: i18n[checkboxMsg]
 			});
 		} else {
-			let regData = {
-				UserName: userValue.username,
-				Userpwd: userValue.password,
-				Email: userValue.email,
-				CurrencyId: 51,
-				UserLang: language
-			};
-			api_site_Register(regData).then(
-				res => {
-					if (isMountedRef.current) {
-						const errorCode = res.data.errorCode;
-						const message = res.data.message;
-
-						if (errorCode === 0) {
-							window.location.href = config.openURL;
-						} else if (
-							errorCode === -2 ||
-							errorCode === -5 ||
-							errorCode === -19
-						) {
-							setTip(prev => {
-								return { ...prev, username: message };
-							});
-						} else if (errorCode === -3) {
-							setTip(prev => {
-								return { ...prev, password: message };
-							});
-						} else {
-							alert(message);
-						}
-					}
-				},
-				res => {
-					if (isMountedRef.current) {
-						alert("API Server Error.");
-					}
-				}
-			);
+			xxxRef.current.submit();
+			// let regData = {
+			// 	UserName: userValue.username,
+			// 	Userpwd: userValue.password,
+			// 	Email: userValue.email,
+			// 	CurrencyId: 51,
+			// 	UserLang: language
+			// };
+			// api_site_Register(regData).then(
+			// 	res => {
+			// 		if (isMountedRef.current) {
+			// 			const errorCode = res.data.errorCode;
+			// 			const message = res.data.message;
+			// 			if (errorCode === 0) {
+			// 				window.location.href = config.openURL;
+			// 			} else if (
+			// 				errorCode === -2 ||
+			// 				errorCode === -5 ||
+			// 				errorCode === -19
+			// 			) {
+			// 				setTip(prev => {
+			// 					return { ...prev, username: message };
+			// 				});
+			// 			} else if (errorCode === -3) {
+			// 				setTip(prev => {
+			// 					return { ...prev, password: message };
+			// 				});
+			// 			} else {
+			// 				alert(message);
+			// 			}
+			// 		}
+			// 	},
+			// 	res => {
+			// 		if (isMountedRef.current) {
+			// 			alert("API Server Error.");
+			// 		}
+			// 	}
+			// );
 		}
 	};
 
 	return (
-		<form className="info">
-			<div className="smallTitle language">
-				{i18n["lbl_Register"]}
-				<a onClick={changeLang.bind(this, "en")}>
-					<img src={enFlag} alt="" />
-				</a>
-				<a onClick={changeLang.bind(this, "vn")}>
-					<img src={vnFlag} alt="" />
-				</a>
-			</div>
-			<Inputbox
-				displayText={i18n["lbl_Username"]}
-				placeholder="Johndoe"
-				value={userValue.username}
-				tip={tip.username}
-				onChange={EditField.bind(null, "username")}
-				onBlur={checkValue.bind(null, "username")}
-			/>
-			<InputboxPsw
-				displayText={i18n["lbl_Password"]}
-				placeholder={i18n["msg_PasswordLength"]}
-				showPsw={showPsw}
-				inputType={`${!showPsw ? "password" : "text"}`}
-				value={userValue.password}
-				tip={tip.password}
-				onChange={EditField.bind(null, "password")}
-				onBlur={checkValue.bind(null, "password")}
-				showPswHandler={showPswHandler}
-			/>
-			<Inputbox
-				displayText="Email"
-				placeholder="name@domain.com"
-				value={userValue.email}
-				onChange={EditField.bind(null, "email")}
-				onBlur={checkValue.bind(null, "email")}
-				tip={tip.email}
-			/>
-			<Checkbox
-				checked={userValue.checkbox}
-				onChange={checkboxHandler}
-				id="c1">
-				{i18n["lbl_Check18TC1"]}{" "}
-				<a target="_blank" href={TandC(language).terms}>
-					{i18n["lbl_TermsConditions"]}
-				</a>{" "}
-				{i18n["lbl_Check18TC2"]}{" "}
-				<a target="_blank" href={TandC(language).rule}>
-					{i18n["lbl_RuleRegulations"]}
-				</a>{" "}
-				{i18n["lbl_Check18TC3"]} Bwing. {i18n["lbl_Check18TC4"]}
-			</Checkbox>
-			{tip.checkbox !== "" ? (
-				<div className="tip active">{tip.checkbox}</div>
-			) : null}
-			<button type="submit" onClick={clickSubmit}>
-				{i18n["lbl_JoinNow"]} + YYY {i18n["lbl_Millions"]}
-			</button>
-		</form>
+		<>
+			<form className="info" onSubmit={clickSubmit}>
+				<div className="smallTitle language">
+					{i18n["lbl_Register"]}
+					<a onClick={changeLang.bind(this, "en")}>
+						<img src={enFlag} alt="" />
+					</a>
+					<a onClick={changeLang.bind(this, "vn")}>
+						<img src={vnFlag} alt="" />
+					</a>
+				</div>
+				<Inputbox
+					displayText={i18n["lbl_Username"]}
+					placeholder="Johndoe"
+					value={userValue.username}
+					tip={tip.username}
+					onChange={EditField.bind(null, "username")}
+					onBlur={checkValue.bind(null, "username")}
+				/>
+				<InputboxPsw
+					displayText={i18n["lbl_Password"]}
+					placeholder={i18n["msg_PasswordLength"]}
+					showPsw={showPsw}
+					inputType={`${!showPsw ? "password" : "text"}`}
+					value={userValue.password}
+					tip={tip.password}
+					onChange={EditField.bind(null, "password")}
+					onBlur={checkValue.bind(null, "password")}
+					showPswHandler={showPswHandler}
+				/>
+				<Inputbox
+					displayText="Email"
+					placeholder="name@domain.com"
+					value={userValue.email}
+					onChange={EditField.bind(null, "email")}
+					onBlur={checkValue.bind(null, "email")}
+					tip={tip.email}
+				/>
+				<Checkbox
+					checked={userValue.checkbox}
+					onChange={checkboxHandler}
+					id="c1">
+					{i18n["lbl_Check18TC1"]}{" "}
+					<a target="_blank" href={TandC(language).terms}>
+						{i18n["lbl_TermsConditions"]}
+					</a>{" "}
+					{i18n["lbl_Check18TC2"]}{" "}
+					<a target="_blank" href={TandC(language).rule}>
+						{i18n["lbl_RuleRegulations"]}
+					</a>{" "}
+					{i18n["lbl_Check18TC3"]} Bwing. {i18n["lbl_Check18TC4"]}
+				</Checkbox>
+				{tip.checkbox !== "" ? (
+					<div className="tip active">{tip.checkbox}</div>
+				) : null}
+				<button type="submit" onClick={clickSubmit}>
+					{i18n["lbl_JoinNow"]}
+				</button>
+			</form>
+			<form
+				ref={xxxRef}
+				action={`${config.openURL}/${language}/Extra/Signup`}
+				method="post">
+				<input
+					type="hidden"
+					name="UserName"
+					value={userValue.username}
+				/>
+				<input
+					type="hidden"
+					name="Userpwd"
+					value={userValue.password}
+				/>
+				<input type="hidden" name="Email" value={userValue.email} />
+				<input type="hidden" name="CurrencyId" value={51} />
+				<input type="hidden" name="UserLang" value={language} />
+				<input
+					type="hidden"
+					name="SignupUrl"
+					value={window.location.host}
+				/>
+			</form>
+		</>
 	);
 };

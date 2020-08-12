@@ -23,5 +23,7 @@ export default {
 		"Please click the above checkbox to confirm the account registration requirements",
 	msg_UsernameNotAvailable: "Username is no longer available.",
 	msg_MailExisted: "Mail already exists.",
-	lbl_Millions: "MILLIONS"
+	lbl_Millions: "MILLIONS",
+	lbl_PromoTitle: "125% first deposit offer",
+	lbl_PromoDesc: "Open account today get VND300k right away for unlimited fun"
 };

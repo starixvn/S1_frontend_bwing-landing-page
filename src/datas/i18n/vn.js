@@ -1,5 +1,5 @@
 export default {
-	lbl_JoinNow: "Tham gia ngay",
+	lbl_JoinNow: "Tạo tài khoản",
 	lbl_Deposit: "NẠP",
 	lbl_ToGet: "NHẬN NGAY",
 	lbl_Register: "ĐĂNG KÝ",
@@ -23,5 +23,7 @@ export default {
 		"Vui lòng bấm vào ô bên trên để xác nhận các yêu cầu đăng ký tài khoản.",
 	msg_UsernameNotAvailable: "Tên đăng nhập này đã được sử dụng.",
 	msg_MailExisted: "Địa chỉ Email này đã được sử dụng.",
-	lbl_Millions: "CỦ"
+	lbl_Millions: "CỦ",
+	lbl_PromoTitle: "THƯỞNG NGAY 125% cho lần nạp đầu",
+	lbl_PromoDesc: "Tặng ngay 300k khi lập tài khoản"
 };
