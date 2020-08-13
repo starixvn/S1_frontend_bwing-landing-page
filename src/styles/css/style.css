@@ -147,11 +147,15 @@ input{
   margin-bottom: 5px;
 }
 @media screen and (max-width:767px) {
+  .body > div{
+    height: auto;
+  }
   img{
     width: 170px;
   }
   .wallpaper{
     align-items: unset;
+    height: auto;
   }
   .module{
     width: calc(100% - 40px);
@@ -159,7 +163,7 @@ input{
     margin-top: 0px;
     border-radius: 0px;
     padding: 20px 20px 0;
-    justify-content: center;
+    /* justify-content: center; */
   }
   .title {
     transform: scale(.8);

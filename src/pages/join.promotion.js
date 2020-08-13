@@ -6,12 +6,14 @@ export const Promotion = ({ language }) => {
 			<div className="yellow">
 				{language === "vn" ? (
 					<>
-						THƯỞNG NGAY <span className="blue">125%</span> cho lần
-						nạp đầu
+						THƯỞNG NGAY <span className="blue">125%</span>
+						<br /> cho lần nạp đầu
 					</>
 				) : (
 					<>
-						<span className="blue">125%</span>first deposit offer
+						<span className="blue">125%</span>
+						<br />
+						first deposit offer
 					</>
 				)}
 			</div>

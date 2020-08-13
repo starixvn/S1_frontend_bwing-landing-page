@@ -6,7 +6,7 @@ import "../styles/css/style.css";
 import { GetTranslation } from "../datas/i18n/i18n";
 
 export default ({ children }) => {
-	const [language, setLanguage] = useState(GET_LANG_ID());
+	const [language, setLanguage] = useState("vn");
 	const [i18n, seti18n] = useState({});
 
 	useEffect(() => {
