@@ -18,7 +18,7 @@ export default {
 	msg_PasswordLength: "Mật khẩu phải có 6 đến 18 ký tự",
 	msg_PasswordVaildate:
 		"6-18 ký tự chữ và số (A-Z, a-z, 0-9) hoặc Ký tự đặc biệt @$*!%#?&",
-	msg_MailWrongFormat: "Địa chỉ Email này đã được sử dụng.",
+	msg_MailWrongFormat: "Định dạng email không đúng",
 	lbl_Check18TCTooltip:
 		"Vui lòng bấm vào ô bên trên để xác nhận các yêu cầu đăng ký tài khoản.",
 	msg_UsernameNotAvailable: "Tên đăng nhập này đã được sử dụng.",

@@ -348,19 +348,55 @@ export default () => {
 					type="hidden"
 					name="UserName"
 					value={userValue.username}
+					onChange={() => {}}
 				/>
 				<input
 					type="hidden"
 					name="Userpwd"
 					value={userValue.password}
+					onChange={() => {}}
 				/>
-				<input type="hidden" name="Email" value={userValue.email} />
-				<input type="hidden" name="CurrencyId" value={51} />
-				<input type="hidden" name="UserLang" value={language} />
+				<input
+					type="hidden"
+					name="Email"
+					value={userValue.email}
+					onChange={() => {}}
+				/>
+				<input
+					type="hidden"
+					name="CurrencyId"
+					value={51}
+					onChange={() => {}}
+				/>
+				<input
+					type="hidden"
+					name="UserLang"
+					value={language}
+					onChange={() => {}}
+				/>
 				<input
 					type="hidden"
 					name="SignupUrl"
 					value={window.location.host}
+					onChange={() => {}}
+				/>
+				<input
+					type="hidden"
+					name="AreaCode"
+					value={""}
+					onChange={() => {}}
+				/>
+				<input
+					type="hidden"
+					name="RealName"
+					value={""}
+					onChange={() => {}}
+				/>
+				<input
+					type="hidden"
+					name="PhoneNo"
+					value={""}
+					onChange={() => {}}
 				/>
 			</form>
 		</>
