@@ -240,50 +240,13 @@ export default () => {
 			});
 		} else {
 			xxxRef.current.submit();
-			// let regData = {
-			// 	UserName: userValue.username,
-			// 	Userpwd: userValue.password,
-			// 	Email: userValue.email,
-			// 	CurrencyId: 51,
-			// 	UserLang: language
-			// };
-			// api_site_Register(regData).then(
-			// 	res => {
-			// 		if (isMountedRef.current) {
-			// 			const errorCode = res.data.errorCode;
-			// 			const message = res.data.message;
-			// 			if (errorCode === 0) {
-			// 				window.location.href = config.openURL;
-			// 			} else if (
-			// 				errorCode === -2 ||
-			// 				errorCode === -5 ||
-			// 				errorCode === -19
-			// 			) {
-			// 				setTip(prev => {
-			// 					return { ...prev, username: message };
-			// 				});
-			// 			} else if (errorCode === -3) {
-			// 				setTip(prev => {
-			// 					return { ...prev, password: message };
-			// 				});
-			// 			} else {
-			// 				alert(message);
-			// 			}
-			// 		}
-			// 	},
-			// 	res => {
-			// 		if (isMountedRef.current) {
-			// 			alert("API Server Error.");
-			// 		}
-			// 	}
-			// );
 		}
 	};
 
 	return (
 		<>
 			<form className="info" onSubmit={clickSubmit}>
-				<div className="smallTitle language">
+				{/* <div className="smallTitle language">
 					{i18n["lbl_Register"]}
 					<a onClick={changeLang.bind(this, "en")}>
 						<img src={enFlag} alt="" />
@@ -291,7 +254,7 @@ export default () => {
 					<a onClick={changeLang.bind(this, "vn")}>
 						<img src={vnFlag} alt="" />
 					</a>
-				</div>
+				</div> */}
 				<Inputbox
 					displayText={i18n["lbl_Username"]}
 					placeholder="Johndoe"
