@@ -1,3 +1,10 @@
+export const defStyle = {
+	style1: "style1",
+	style2: "style2"
+};
+
+export const SiteStyle = defStyle.style2;
+
 export default process.env.NODE_ENV === "production"
 	? {
 			apiURL: "",

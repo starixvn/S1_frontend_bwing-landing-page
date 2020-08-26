@@ -8,8 +8,6 @@ import TandC from "../service/t_and_c";
 import Inputbox from "../components/inputbox";
 import InputboxPsw from "../components/inputbox.password";
 import Checkbox from "../components/checkbox";
-import enFlag from "../styles/img/en.png";
-import vnFlag from "../styles/img/vn.png";
 import config from "../config";
 
 const initValue = {
@@ -300,7 +298,7 @@ export default () => {
 					<div className="tip active">{tip.checkbox}</div>
 				) : null}
 				<button type="submit" onClick={clickSubmit}>
-					{i18n["lbl_JoinNow"]}
+					<span>{i18n["lbl_JoinNow"]}</span>
 				</button>
 			</form>
 			<form

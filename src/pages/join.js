@@ -1,30 +1,17 @@
 import React, { useEffect, useContext } from "react";
-import logo from "../styles/img/logo.png";
+import logo from "../styles/style1/img/logo.png";
 import { PromotionDesc, Promotion } from "./join.promotion";
 import Form from "./join.form";
-import config from "../config";
+import config, { SiteStyle, defStyle } from "../config";
 import { getUrlParameter } from "../components/common";
 import { languageContext } from "../components/context";
+import Style2_BottomIMG from "../styles/style2/img/bottom_img.png";
 // import { api_site_CheckSignIn } from "../service/api/site";
+
+const _style = SiteStyle;
 
 export default () => {
 	const { language } = useContext(languageContext);
-	// const [showPage, setShowPage] = useState(null);
-	// useEffect(() => {
-	// 	let mounted = true;
-	// 	api_site_CheckSignIn().then(res => {
-	// 		if (mounted) {
-	// 			if (res.data.errorCode === 0) {
-	// 				window.location.href = config.openURL;
-	// 				setShowPage(false);
-	// 			} else {
-	// 				setShowPage(true);
-	// 			}
-	// 		}
-	// 	});
-
-	// 	return () => (mounted = false);
-	// }, [setShowPage]);
 
 	useEffect(() => {
 		let errorCode = getUrlParameter("errorCode");
@@ -45,6 +32,17 @@ export default () => {
 				<Form />
 				<PromotionDesc language={language} />
 			</div>
+			<BottomImg />
 		</div>
 	);
+};
+
+const BottomImg = () => {
+	if (_style === defStyle.style2) {
+		return (
+			<img src={Style2_BottomIMG} className="bottomImg" alt="bottomImg" />
+		);
+	} else {
+		return <></>;
+	}
 };
