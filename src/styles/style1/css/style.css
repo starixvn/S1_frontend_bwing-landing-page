@@ -173,3 +173,17 @@ input{
     width: 80vw;
   }
 }
+@media screen and (max-width:1535px) and (min-width:415px) and (max-height:767px) {
+  .wallpaper{
+    height: auto;
+    flex-direction: column;
+  }
+  .module{
+    width: 335px;
+  }
+}
+@media screen and (max-width:414px) and (min-width:376px) {
+  .info{
+    width: 65vw;
+  }
+}
