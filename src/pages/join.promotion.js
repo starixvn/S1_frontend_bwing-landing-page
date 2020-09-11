@@ -8,7 +8,9 @@ export const Promotion = ({ language }) => {
 		return (
 			<div className="title">
 				<div className="yellow">
-					<span className="blue">N.Ạ.P ĐẦU</span>x125%
+					<div>BWING CASINO</div>
+					<span className="blue">N.Ạ.P</span>300K
+					<span className="blue">TẶNG NGAY</span>100K
 				</div>
 			</div>
 		);
