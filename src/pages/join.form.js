@@ -1,9 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { languageContext, i18nContext } from "../components/context";
-import {
-	api_site_ExistsUserName,
-	api_site_ExistsEmail
-} from "../service/api/site";
+import { api_site_ExistsUserName } from "../service/api/site";
 import TandC from "../service/t_and_c";
 import Inputbox from "../components/inputbox";
 import InputboxPsw from "../components/inputbox.password";
@@ -13,14 +10,12 @@ import config from "../config";
 const initValue = {
 	username: "",
 	password: "",
-	email: "",
 	checkbox: false
 };
 
 const initTip = {
 	username: "",
 	password: "",
-	email: "",
 	checkbox: ""
 };
 
@@ -64,10 +59,7 @@ export default () => {
 		} else if (col === "password") {
 			let result = passwordCheck(val);
 			msg = result.msg;
-		} else if (col === "email") {
-			let result = emailCheck(val);
-			msg = result.msg;
-		}
+		} 
 
 		if (tip[col] !== i18n[msg]) {
 			setTip(prev => {
@@ -153,57 +145,7 @@ export default () => {
 		return { checked, msg };
 	};
 
-	const emailCheck = val => {
-		let checked = false;
-		let msg = "";
-		const regx = /^\w+((-\w+)|(\.\w+))*@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 
-		if (val === "") {
-			checked = false;
-			msg = "msg_MailWrongFormat";
-		} else if (val !== "") {
-			if (!regx.test(val)) {
-				checked = false;
-				msg = "msg_MailWrongFormat";
-			} else {
-				checked = true;
-			}
-		}
-
-		if (checked === true) {
-			api_site_ExistsEmail({ Email: val }).then(
-				res => {
-					if (isMountedRef.current) {
-						if (res.data.errorCode === 0) {
-							if (res.data.data === true) {
-								setTip(prev => {
-									return {
-										...prev,
-										email: i18n["msg_MailExisted"]
-									};
-								});
-							} else {
-								setTip(prev => {
-									return { ...prev, email: "" };
-								});
-							}
-						} else {
-							setTip(prev => {
-								return { ...prev, email: res.data.message };
-							});
-						}
-					}
-				},
-				err => {
-					if (isMountedRef.current) {
-						alert("API Server Error.");
-					}
-				}
-			);
-		}
-
-		return { checked, msg };
-	};
 
 	const checkboxHandler = () => {
 		let checked = !userValue.checkbox;
@@ -216,13 +158,11 @@ export default () => {
 		e.preventDefault();
 		let _usernameCheck = usernameCheck(userValue.username);
 		let _passwordCheck = passwordCheck(userValue.password);
-		let _emailCheck = emailCheck(userValue.email);
 		let _checkboxCheck = userValue.checkbox;
 
 		let checked =
 			_usernameCheck.checked &&
 			_passwordCheck.checked &&
-			_emailCheck.checked &&
 			_checkboxCheck;
 
 		if (!checked) {
@@ -233,7 +173,6 @@ export default () => {
 			setTip({
 				username: i18n[_usernameCheck.msg],
 				password: i18n[_passwordCheck.msg],
-				email: i18n[_emailCheck.msg],
 				checkbox: i18n[checkboxMsg]
 			});
 		} else {
@@ -244,15 +183,7 @@ export default () => {
 	return (
 		<>
 			<form className="info" onSubmit={clickSubmit}>
-				{/* <div className="smallTitle language">
-					{i18n["lbl_Register"]}
-					<a onClick={changeLang.bind(this, "en")}>
-						<img src={enFlag} alt="" />
-					</a>
-					<a onClick={changeLang.bind(this, "vn")}>
-						<img src={vnFlag} alt="" />
-					</a>
-				</div> */}
+
 				<Inputbox
 					displayText={i18n["lbl_Username"]}
 					placeholder="Johndoe"
@@ -272,14 +203,7 @@ export default () => {
 					onBlur={checkValue.bind(null, "password")}
 					showPswHandler={showPswHandler}
 				/>
-				<Inputbox
-					displayText="Email"
-					placeholder="name@domain.com"
-					value={userValue.email}
-					onChange={EditField.bind(null, "email")}
-					onBlur={checkValue.bind(null, "email")}
-					tip={tip.email}
-				/>
+	
 				<Checkbox
 					checked={userValue.checkbox}
 					onChange={checkboxHandler}
@@ -317,12 +241,7 @@ export default () => {
 					value={userValue.password}
 					onChange={() => {}}
 				/>
-				<input
-					type="hidden"
-					name="Email"
-					value={userValue.email}
-					onChange={() => {}}
-				/>
+	
 				<input
 					type="hidden"
 					name="CurrencyId"
