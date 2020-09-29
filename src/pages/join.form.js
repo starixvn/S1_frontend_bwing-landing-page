@@ -33,10 +33,6 @@ export default () => {
 		return () => (isMountedRef.current = false);
 	});
 
-	const changeLang = lan => {
-		setLanguage(lan);
-	};
-
 	const showPswHandler = () => {
 		setShowPsw(!showPsw);
 	};
@@ -59,7 +55,7 @@ export default () => {
 		} else if (col === "password") {
 			let result = passwordCheck(val);
 			msg = result.msg;
-		} 
+		}
 
 		if (tip[col] !== i18n[msg]) {
 			setTip(prev => {
@@ -68,7 +64,22 @@ export default () => {
 		}
 	};
 
-	const usernameCheck = val => {
+	const nameRepeatCheck = async val => {
+		try {
+			const res = await api_site_ExistsUserName({ UserName: val });
+			if (isMountedRef.current) {
+				if (res.data.errorCode === 0) {
+					return !res.data.data;
+				}
+			}
+		} catch (error) {
+			if (isMountedRef.current && error.response) {
+				alert(i18n["msg_ApiServerError"]);
+			}
+		}
+	};
+
+	const usernameCheck = async val => {
 		let checked = false;
 		let msg = "";
 
@@ -79,47 +90,14 @@ export default () => {
 			if (val.length < 6 || val.length > 18) {
 				checked = false;
 				msg = "msg_UsernameLength";
-			} else {
+			} else if ((await nameRepeatCheck(val)) === false) {
+				checked = false;
+				msg = "msg_UsernameNotAvailable";
+			} else if ((await nameRepeatCheck(val)) === true) {
 				checked = true;
+				msg = "";
 			}
 		}
-
-		if (checked === true) {
-			api_site_ExistsUserName({ UserName: val }).then(
-				res => {
-					if (isMountedRef.current) {
-						if (res.data.errorCode === 0) {
-							if (res.data.data === true) {
-								setTip(prev => {
-									return {
-										...prev,
-										username:
-											i18n["msg_UsernameNotAvailable"]
-									};
-								});
-							} else {
-								setTip(prev => {
-									return { ...prev, username: "" };
-								});
-							}
-						} else {
-							setTip(prev => {
-								return {
-									...prev,
-									username: res.data.message
-								};
-							});
-						}
-					}
-				},
-				err => {
-					if (isMountedRef.current) {
-						alert("API Server Error.");
-					}
-				}
-			);
-		}
-
 		return { checked, msg };
 	};
 
@@ -145,8 +123,6 @@ export default () => {
 		return { checked, msg };
 	};
 
-
-
 	const checkboxHandler = () => {
 		let checked = !userValue.checkbox;
 		setUserValue(prev => {
@@ -154,16 +130,14 @@ export default () => {
 		});
 	};
 
-	const clickSubmit = e => {
+	const clickSubmit = async e => {
 		e.preventDefault();
-		let _usernameCheck = usernameCheck(userValue.username);
+		let _usernameCheck = await usernameCheck(userValue.username);
 		let _passwordCheck = passwordCheck(userValue.password);
 		let _checkboxCheck = userValue.checkbox;
 
 		let checked =
-			_usernameCheck.checked &&
-			_passwordCheck.checked &&
-			_checkboxCheck;
+			_usernameCheck.checked && _passwordCheck.checked && _checkboxCheck;
 
 		if (!checked) {
 			let checkboxMsg = "";
@@ -183,7 +157,6 @@ export default () => {
 	return (
 		<>
 			<form className="info" onSubmit={clickSubmit}>
-
 				<Inputbox
 					displayText={i18n["lbl_Username"]}
 					placeholder="Johndoe"
@@ -203,7 +176,7 @@ export default () => {
 					onBlur={checkValue.bind(null, "password")}
 					showPswHandler={showPswHandler}
 				/>
-	
+
 				<Checkbox
 					checked={userValue.checkbox}
 					onChange={checkboxHandler}
@@ -241,7 +214,7 @@ export default () => {
 					value={userValue.password}
 					onChange={() => {}}
 				/>
-	
+
 				<input
 					type="hidden"
 					name="CurrencyId"
