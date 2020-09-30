@@ -45,12 +45,12 @@ export default () => {
 		}));
 	};
 
-	const checkValue = (col, e) => {
+	const checkValue = async (col, e) => {
 		let val = e.target.value;
 		let msg = "";
 
 		if (col === "username") {
-			let result = usernameCheck(val);
+			let result = await usernameCheck(val);
 			msg = result.msg;
 		} else if (col === "password") {
 			let result = passwordCheck(val);

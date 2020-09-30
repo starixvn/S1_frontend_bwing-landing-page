@@ -3,7 +3,7 @@ export const defStyle = {
 	style2: "style2"
 };
 
-export const SiteStyle = defStyle.style2;
+export const SiteStyle = defStyle.style1;
 
 export default process.env.NODE_ENV === "production"
 	? {

@@ -37,6 +37,7 @@ img{
 .title{
   margin: 20px 0 0;
   text-align: center;
+  text-transform:uppercase;
 }
 .title span{
   letter-spacing: 1px;

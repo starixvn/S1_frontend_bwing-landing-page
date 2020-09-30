@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import logo from "../styles/style1/img/logo.png";
-import { PromotionDesc, Promotion } from "./join.promotion";
+import { Promotion } from "./join.promotion";
 import Form from "./join.form";
 import config, { SiteStyle, defStyle } from "../config";
 import { getUrlParameter } from "../components/common";
@@ -30,7 +30,6 @@ export default () => {
 				</a>
 				<Promotion language={language} />
 				<Form />
-				<PromotionDesc language={language} />
 			</div>
 			<BottomImg />
 		</div>
