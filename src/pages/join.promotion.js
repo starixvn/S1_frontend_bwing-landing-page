@@ -1,18 +1,14 @@
 import React from "react";
 import { SiteStyle, defStyle } from "../config";
+import titleImg from "../styles/style1/img/title.png";
 
 const _style = SiteStyle;
 
-export const Promotion = ({ language }) => {
+export const Promotion = () => {
 	if (_style === defStyle.style1) {
 		return (
 			<div class="title">
-				<div class="yellow">
-					<span class="blue">thưởng chào mừng</span>150%
-				</div>
-				<div class="yellow">
-					<span class="blue">lên đến</span>10 triệu vnd
-				</div>
+				<img src={titleImg} />
 			</div>
 		);
 	} else {

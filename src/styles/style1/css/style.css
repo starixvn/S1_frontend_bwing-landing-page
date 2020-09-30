@@ -30,7 +30,7 @@ body > div,body > div > div{
   padding: 50px 130px 0;
 }
 img{
-  width: 250px;
+  width: 90%;
 }
 .title{
   margin: 30px 0 0;
@@ -152,9 +152,6 @@ input{
 @media screen and (max-width:767px) {
   .body > div{
     height: auto;
-  }
-  img{
-    width: 170px;
   }
   .wallpaper{
     align-items: unset;
