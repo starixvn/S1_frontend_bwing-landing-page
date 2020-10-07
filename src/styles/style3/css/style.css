@@ -1,38 +1,125 @@
-*{margin: 0px;padding: 0px}
-body{font-family:Roboto;font-size: 15px;line-height: 1.5;background: url(../img/bg.jpg) no-repeat center;background-size: cover;min-height: 100vh}
-li{list-style:none;}
-.form-active {width: 600px;margin: auto;background-color: #281658;color: #fff;padding: 20px 100px;margin-top: 100px;border-radius: 20px; }
-.text-head-form h2 {/* Style for "ĐĂNG KÝ" */
-width: 88px;
-height: 20px;
-color: #ffffff;
-font-size: 19px;
-font-weight: 700;
-line-height: 11.02px;
-text-transform: uppercase;}
-.text-head-form {position: relative;}
-.text-head-form ul {position: absolute;right: 0px;top: 0px;}
-.text-head-form ul li img{width: 34px;border-radius: 5px;}
-.text-head-form ul li {float: left;padding-left:5px;}
-.img-top  ,.img-bottom {padding: 36px 0}
-.form-input input{display: block;border-radius: 15px;width: 100%;padding: 8px;color: #333;}
-.form-input {padding-bottom: 20px;}
-.form-input label{font-weight: normal;font-size: 13px;font-family: Tahoma;}
-.check-pass {position: relative;}
-.check-pass span {position: absolute;right: 10px;bottom: 33px;color: #211232;}
-.check-q {text-align: left;position: relative;padding-left: 20px;}
-.check-q input{display: inline-block;width: auto;position: absolute;left: 0px;top: 0px;}
-.check-q label {display: inline-block;}
-.check-q label span a{color: #ffa200;}
-.input-list button{/* Style for "Rounded Re" */
-display: block;width: 100%;padding: 8px;border-radius: 15px;
-border: 2px solid #f0a100;
-background-color: #ffffff;
-background-image: linear-gradient(to top, #ff6600 0%, #fcffe0 100%);}
-.hide-pc {display: none;}
-img{max-width: 100%;height: auto}
+*{
+	margin: 0px;
+	padding: 0px
+}
+body{
+	font-family:Roboto;
+	font-size: 15px;
+	line-height: 1.5;
+	background: url(../img/bg.jpg) no-repeat center;
+	background-size: cover;
+	min-height: 100vh
+}
+li{
+	list-style:none;
+}
+.form-active {
+	width: 600px;margin: auto;background-color: #281658;color: #fff;padding: 20px 100px;margin-top: 100px;border-radius: 20px; 
+}
+.text-head-form h2 {
+	/* Style for "ĐĂNG KÝ" */
+	width: 88px;
+	height: 20px;
+	color: #ffffff;
+	font-size: 19px;
+	font-weight: 700;
+	line-height: 11.02px;
+	text-transform: uppercase;
+}
+.text-head-form {
+	position: relative;
+}
+.text-head-form ul {
+	position: absolute;right: 0px;top: 0px;
+}
+.text-head-form ul li img{
+	width: 34px;border-radius: 5px;
+}
+.text-head-form ul li {
+	float: left;padding-left:5px;
+}
+.img-top  ,.img-bottom {
+	padding: 36px 0
+}
+.form-input input{
+	display: block;border-radius: 15px;
+	width: 100%;
+	padding: 8px;
+	color: #333;
+}
+.form-input {
+	padding-bottom: 20px;
+}
+.form-input label{
+	font-weight: normal;
+	font-size: 13px;
+	font-family: Tahoma;
+}
+.check-pass {
+	position: relative;
+}
+
+.check-pass i{
+	position: absolute;
+	left: 93%;
+	color: #211232;
+	cursor: pointer;
+	transform: translateY(-28px);
+  }
+
+.tip{
+	color: red;
+}
+
+.check-q {
+	text-align: left;
+	position: relative;
+	padding-left: 20px;
+}
+.check-q input{
+	display: inline-block;
+	width: auto;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+.check-q label {
+	display: inline-block;
+}
+.check-q label span a{
+	color: #ffa200;
+}
+.input-list button{
+	/* Style for "Rounded Re" */
+	display: block;
+	width: 100%;
+	padding: 8px;
+	border-radius: 15px;
+	border: 2px solid #f0a100;
+	background-color: #ffffff;
+	background-image: linear-gradient(to top, #ff6600 0%, #fcffe0 100%);
+}
+.hide-pc {
+	display: none;
+}
+img{
+	max-width: 100%;
+	height: auto
+}
+
 @media(max-width: 768px){
-	.hide-mobile{display: none}.hide-pc {display: block;}
-	.form-active {width: 100%;padding: 20px;background-size: auto 100%}
-	.form-active {margin-top: 50px; margin-bottom: 50px;}
+	.hide-mobile{
+		display: none
+	}.hide-pc {
+		display: block;
+	}
+	.form-active {
+		width: 100%;
+		padding: 20px;
+		background-size: auto 100%
+	}
+	.form-active {
+		margin-top: 50px;
+		 margin-bottom: 50px;
+	}
 }

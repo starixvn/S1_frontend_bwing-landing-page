@@ -193,7 +193,6 @@ export default () => {
 								<label>{i18n["lbl_Password"]}</label>
 								<InputboxPsw
 									placeholder={i18n["msg_PasswordLength"]}
-									showPsw={showPsw}
 									inputType={`${
 										!showPsw ? "password" : "text"
 									}`}
@@ -201,14 +200,10 @@ export default () => {
 									tip={tip.password}
 									onChange={EditField.bind(null, "password")}
 									onBlur={checkValue.bind(null, "password")}
+									showPsw={showPsw}
+									showPswHandler={showPswHandler}
+									customizedEye={true}
 								/>
-								<span
-									onClick={showPswHandler}
-									className={
-										showPsw
-											? "far c-p-a fa fa-eye"
-											: "far c-p-a fa fa-eye-slash"
-									}></span>
 							</div>
 
 							<div className="form-input check-q">
@@ -217,7 +212,7 @@ export default () => {
 									onChange={checkboxHandler}
 									id="c1">
 									{i18n["lbl_Check18TC1"]}{" "}
-									<label for="">
+									<label htmlFor="">
 										Tôi đồng ý với
 										<span>
 											<a

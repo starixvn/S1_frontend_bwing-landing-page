@@ -18,6 +18,15 @@ export default props => {
 			<i
 				className={props.showPsw ? " eye" : " eye-off"}
 				onClick={props.showPswHandler}></i>
+			{props.customizedEye ? (
+				<i
+					onClick={props.showPswHandler}
+					className={
+						props.showPsw
+							? "far c-p-a fa fa-eye"
+							: "far c-p-a fa fa-eye-slash"
+					}></i>
+			) : null}
 
 			{props.tip ? <div className="tip active">{props.tip}</div> : null}
 		</>
