@@ -23,7 +23,7 @@ text-transform: uppercase;}
 .check-q {text-align: left;position: relative;padding-left: 20px;}
 .check-q input{display: inline-block;width: auto;position: absolute;left: 0px;top: 0px;}
 .check-q label {display: inline-block;}
-.check-q label span{color: #ffa200;}
+.check-q label span a{color: #ffa200;}
 .input-list button{/* Style for "Rounded Re" */
 display: block;width: 100%;padding: 8px;border-radius: 15px;
 border: 2px solid #f0a100;

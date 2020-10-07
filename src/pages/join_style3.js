@@ -201,9 +201,14 @@ export default () => {
 									tip={tip.password}
 									onChange={EditField.bind(null, "password")}
 									onBlur={checkValue.bind(null, "password")}
-									showPswHandler={showPswHandler}
 								/>
-								<span className="far c-p-a fa fa-eye pw"></span>
+								<span
+									onClick={showPswHandler}
+									className={
+										showPsw
+											? "far c-p-a fa fa-eye"
+											: "far c-p-a fa fa-eye-slash"
+									}></span>
 							</div>
 
 							<div className="form-input check-q">
@@ -214,10 +219,22 @@ export default () => {
 									{i18n["lbl_Check18TC1"]}{" "}
 									<label for="">
 										Tôi đồng ý với
-										<span> Điều khoản và điều kiện </span>
+										<span>
+											<a
+												target="_blank"
+												href={TandC(language).terms}
+												rel="noopener noreferrer">
+												{i18n["lbl_TermsConditions"]}
+											</a>{" "}
+										</span>
 										và&nbsp;
 										<span>
-											Quy tắc và quy định đặt cược
+											<a
+												target="_blank"
+												href={TandC(language).rule}
+												rel="noopener noreferrer">
+												{i18n["lbl_RuleRegulations"]}
+											</a>
 										</span>
 										&nbsp; của Bwing. Tôi xác nhận tôi đã
 										trên 21 tuổi.
