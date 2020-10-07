@@ -180,8 +180,8 @@ export default () => {
 						</div>
 						<div className="input-list">
 							<div className="form-input">
+								<label>{i18n["lbl_Username"]}</label>
 								<Inputbox
-									displayText={i18n["lbl_Username"]}
 									placeholder="Johndoe"
 									value={userValue.username}
 									tip={tip.username}
@@ -190,8 +190,8 @@ export default () => {
 								/>
 							</div>
 							<div className="form-input check-pass">
+								<label>{i18n["lbl_Password"]}</label>
 								<InputboxPsw
-									displayText={i18n["lbl_Password"]}
 									placeholder={i18n["msg_PasswordLength"]}
 									showPsw={showPsw}
 									inputType={`${
@@ -212,21 +212,16 @@ export default () => {
 									onChange={checkboxHandler}
 									id="c1">
 									{i18n["lbl_Check18TC1"]}{" "}
-									<a
-										target="_blank"
-										href={TandC(language).terms}
-										rel="noopener noreferrer">
-										{i18n["lbl_TermsConditions"]}
-									</a>{" "}
-									{i18n["lbl_Check18TC2"]}{" "}
-									<a
-										target="_blank"
-										href={TandC(language).rule}
-										rel="noopener noreferrer">
-										{i18n["lbl_RuleRegulations"]}
-									</a>{" "}
-									{i18n["lbl_Check18TC3"]} Bwing.{" "}
-									{i18n["lbl_Check18TC4"]}
+									<label for="">
+										Tôi đồng ý với
+										<span> Điều khoản và điều kiện </span>
+										và&nbsp;
+										<span>
+											Quy tắc và quy định đặt cược
+										</span>
+										&nbsp; của Bwing. Tôi xác nhận tôi đã
+										trên 21 tuổi.
+									</label>
 								</Checkbox>
 								{tip.checkbox !== "" ? (
 									<div className="tip active">

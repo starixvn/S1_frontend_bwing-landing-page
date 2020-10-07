@@ -4,7 +4,7 @@ export const defStyle = {
 	style3: "style3"
 };
 
-export const SiteStyle = defStyle.style3;
+export const SiteStyle = defStyle.style1;
 
 export default process.env.NODE_ENV === "production"
 	? {
@@ -14,10 +14,6 @@ export default process.env.NODE_ENV === "production"
 			t_and_cURL: ""
 	  }
 	: {
-			// apiURL: "http://localhost:60930",
-			// openURL: "http://localhost:60930",
-			// imgUrl: "http://localhost:60930",
-			// t_and_cURL: "http://localhost:60930"
 			apiURL: "http://www.n88dev.com",
 			imgUrl: "http://www.n88dev.com",
 			t_and_cURL: "http://www.n88dev.com",

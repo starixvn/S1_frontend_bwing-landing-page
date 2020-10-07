@@ -18,7 +18,9 @@ class Content extends Component {
 		});
 	};
 	importStyle = async () => {
-		await import(`./styles/${_style}/css/reset.css`);
+		if (_style !== defStyle.style3) {
+			await import(`./styles/${_style}/css/reset.css`);
+		}
 		await import(`./styles/${_style}/css/style.css`);
 	};
 	render() {
@@ -85,6 +87,19 @@ const GATag = () => {
 	} else if (_style === defStyle.style3) {
 		return (
 			<Helmet>
+				<link
+					rel="stylesheet"
+					href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+				/>
+				<link
+					rel="stylesheet"
+					href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+				/>
+				<link rel="stylesheet" href="style.css" />
+				<link
+					href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,400;1,700&display=swap"
+					rel="stylesheet"
+				/>
 				<script
 					async
 					src="https://www.googletagmanager.com/gtag/js?id=UA-177194402-3"></script>
