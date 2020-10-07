@@ -20,7 +20,7 @@ const initTip = {
 };
 
 export default () => {
-	const { language, setLanguage } = useContext(languageContext);
+	const { language } = useContext(languageContext);
 	const { i18n } = useContext(i18nContext);
 	const [userValue, setUserValue] = useState(initValue);
 	const [tip, setTip] = useState(initTip);
@@ -182,11 +182,17 @@ export default () => {
 					onChange={checkboxHandler}
 					id="c1">
 					{i18n["lbl_Check18TC1"]}{" "}
-					<a target="_blank" href={TandC(language).terms}>
+					<a
+						target="_blank"
+						href={TandC(language).terms}
+						rel="noopener noreferrer">
 						{i18n["lbl_TermsConditions"]}
 					</a>{" "}
 					{i18n["lbl_Check18TC2"]}{" "}
-					<a target="_blank" href={TandC(language).rule}>
+					<a
+						target="_blank"
+						href={TandC(language).rule}
+						rel="noopener noreferrer">
 						{i18n["lbl_RuleRegulations"]}
 					</a>{" "}
 					{i18n["lbl_Check18TC3"]} Bwing. {i18n["lbl_Check18TC4"]}

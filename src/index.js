@@ -36,51 +36,68 @@ class Content extends Component {
 }
 
 const GATag = () => {
-	return _style === defStyle.style1 ? (
-		<Helmet>
-			<script
-				async
-				src="https://www.googletagmanager.com/gtag/js?id=UA-177194402-1"></script>
-			<script>
-				{`window.dataLayer = window.dataLayer || [];
-					function gtag(){dataLayer.push(arguments);}
-					gtag('js', new Date());
+	if (_style === defStyle.style1) {
+		return (
+			<Helmet>
+				<script
+					async
+					src="https://www.googletagmanager.com/gtag/js?id=UA-177194402-1"></script>
+				<script>
+					{`window.dataLayer = window.dataLayer || [];
+						function gtag(){dataLayer.push(arguments);}
+						gtag('js', new Date());
+	
+						gtag('config', 'UA-177194402-1');`}
+				</script>
+			</Helmet>
+		);
+	} else if (_style === defStyle.style2) {
+		return (
+			<Helmet>
+				<script
+					async
+					src="https://www.googletagmanager.com/gtag/js?id=UA-177194402-2"></script>
+				<script>
+					{`window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
 
-					gtag('config', 'UA-177194402-1');`}
-			</script>
-		</Helmet>
-	) : _style === defStyle.style2 ? (
-		<Helmet>
-			<script
-				async
-				src="https://www.googletagmanager.com/gtag/js?id=UA-177194402-2"></script>
-			<script>
-				{`window.dataLayer = window.dataLayer || [];
-					function gtag(){dataLayer.push(arguments);}
-					gtag('js', new Date());
+				gtag('config', 'UA-177194402-2');`}
+				</script>
 
-					gtag('config', 'UA-177194402-2');`}
-			</script>
-
-			<script>
-				{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-				})(window,document,'script','dataLayer','GTM-MXLMCWX');
-				`}
-			</script>
-			<noscript>
-				{`<iframe
+				<script>
+					{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+					new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+					j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+					'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+					})(window,document,'script','dataLayer','GTM-MXLMCWX');
+					`}
+				</script>
+				<noscript>
+					{`<iframe
 					src="https://www.googletagmanager.com/ns.html?id=GTM-MXLMCWX"
 					height="0"
 					width="0"
 					style="display:none;visibility:hidden"></iframe>`}
-			</noscript>
-		</Helmet>
-	) : (
-		<></>
-	);
+				</noscript>
+			</Helmet>
+		);
+	} else if (_style === defStyle.style3) {
+		return (
+			<Helmet>
+				<script
+					async
+					src="https://www.googletagmanager.com/gtag/js?id=UA-177194402-3"></script>
+				<script>
+					{`window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+
+					gtag('config', 'UA-177194402-3');`}
+				</script>
+			</Helmet>
+		);
+	}
 };
 
 ReactDOM.render(<Content />, document.getElementById("root"));

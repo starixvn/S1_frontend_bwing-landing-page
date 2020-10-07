@@ -8,7 +8,7 @@ export const Promotion = () => {
 	if (_style === defStyle.style1) {
 		return (
 			<div className="title">
-				<img src={titleImg} />
+				<img src={titleImg} alt="title_img" />
 			</div>
 		);
 	} else {

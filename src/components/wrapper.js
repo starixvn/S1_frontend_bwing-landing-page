@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as ct from "./context";
-import { GET_LANG_ID } from "../service/language";
+// import { GET_LANG_ID } from "../service/language";
 import { GetTranslation } from "../datas/i18n/i18n";
 
 export default ({ children }) => {
