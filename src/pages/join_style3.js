@@ -211,9 +211,8 @@ export default () => {
 									checked={userValue.checkbox}
 									onChange={checkboxHandler}
 									id="c1">
-									{i18n["lbl_Check18TC1"]}{" "}
 									<label htmlFor="">
-										Tôi đồng ý với
+										{i18n["lbl_Check18TC1"]}{" "}
 										<span>
 											<a
 												target="_blank"
@@ -230,9 +229,9 @@ export default () => {
 												rel="noopener noreferrer">
 												{i18n["lbl_RuleRegulations"]}
 											</a>
-										</span>
-										&nbsp; của Bwing. Tôi xác nhận tôi đã
-										trên 21 tuổi.
+										</span>{" "}
+										của Bwing. Tôi xác nhận tôi đã trên 21
+										tuổi.
 									</label>
 								</Checkbox>
 								{tip.checkbox !== "" ? (
