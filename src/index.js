@@ -43,13 +43,13 @@ const GATag = () => {
 			<Helmet>
 				<script
 					async
-					src="https://www.googletagmanager.com/gtag/js?id=UA-177194402-1"></script>
+					src="https://www.googletagmanager.com/gtag/js?id=UA-163766925-3"></script>
 				<script>
 					{`window.dataLayer = window.dataLayer || [];
 						function gtag(){dataLayer.push(arguments);}
 						gtag('js', new Date());
 	
-						gtag('config', 'UA-177194402-1');`}
+						gtag('config', 'UA-163766925-3');`}
 				</script>
 			</Helmet>
 		);
@@ -58,13 +58,13 @@ const GATag = () => {
 			<Helmet>
 				<script
 					async
-					src="https://www.googletagmanager.com/gtag/js?id=UA-177194402-2"></script>
+					src="https://www.googletagmanager.com/gtag/js?id=UA-163766925-4"></script>
 				<script>
 					{`window.dataLayer = window.dataLayer || [];
 				function gtag(){dataLayer.push(arguments);}
 				gtag('js', new Date());
 
-				gtag('config', 'UA-177194402-2');`}
+				gtag('config', 'UA-163766925-4');`}
 				</script>
 
 				<script>
@@ -102,13 +102,13 @@ const GATag = () => {
 				/>
 				<script
 					async
-					src="https://www.googletagmanager.com/gtag/js?id=UA-177194402-3"></script>
+					src="https://www.googletagmanager.com/gtag/js?id=UA-163766925-5"></script>
 				<script>
 					{`window.dataLayer = window.dataLayer || [];
 					function gtag(){dataLayer.push(arguments);}
 					gtag('js', new Date());
 
-					gtag('config', 'UA-177194402-3');`}
+					gtag('config', 'UA-163766925-5');`}
 				</script>
 			</Helmet>
 		);
