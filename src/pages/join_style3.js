@@ -8,6 +8,7 @@ import Inputbox from "../components/inputbox";
 import InputboxPsw from "../components/inputbox.password";
 import TandC from "../service/t_and_c";
 import Checkbox from "../components/checkbox";
+import btnImg from "../styles/style3/img/CTA1.png";
 
 const initValue = {
 	username: "",
@@ -239,7 +240,7 @@ export default () => {
 								) : null}
 							</div>
 							<button type="submit" onClick={clickSubmit}>
-								<span>{i18n["lbl_Register"]} + 10TR</span>
+								<img src={btnImg} />
 							</button>
 						</div>
 					</form>

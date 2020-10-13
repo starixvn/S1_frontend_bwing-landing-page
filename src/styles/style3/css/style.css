@@ -14,7 +14,13 @@ li{
 	list-style:none;
 }
 .form-active {
-	width: 600px;margin: auto;background-color: #281658;color: #fff;padding: 20px 100px;margin-top: 100px;border-radius: 20px; 
+	width: 600px;
+	margin: auto;
+	background-color: #281658;
+	color: #fff;
+	padding: 20px 100px;
+	margin-top: 100px;
+	border-radius: 20px; 
 }
 .text-head-form h2 {
 	/* Style for "ĐĂNG KÝ" */
@@ -30,19 +36,24 @@ li{
 	position: relative;
 }
 .text-head-form ul {
-	position: absolute;right: 0px;top: 0px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
 }
 .text-head-form ul li img{
-	width: 34px;border-radius: 5px;
+	width: 34px;
+	border-radius: 5px;
 }
 .text-head-form ul li {
-	float: left;padding-left:5px;
+	float: left;
+	padding-left:5px;
 }
 .img-top  ,.img-bottom {
 	padding: 36px 0
 }
 .form-input input{
-	display: block;border-radius: 15px;
+	display: block;
+	border-radius: 15px;
 	width: 100%;
 	padding: 8px;
 	color: #333;
@@ -58,19 +69,16 @@ li{
 .check-pass {
 	position: relative;
 }
-
 .check-pass i{
 	position: absolute;
 	left: 93%;
 	color: #211232;
 	cursor: pointer;
 	transform: translateY(-28px);
-  }
-
+}
 .tip{
 	color: red;
 }
-
 .check-q {
 	text-align: left;
 	position: relative;
@@ -91,13 +99,15 @@ li{
 }
 .input-list button{
 	/* Style for "Rounded Re" */
-	display: block;
+	/* display: block;
 	width: 100%;
 	padding: 8px;
 	border-radius: 15px;
 	border: 2px solid #f0a100;
 	background-color: #ffffff;
-	background-image: linear-gradient(to top, #ff6600 0%, #fcffe0 100%);
+	background-image: linear-gradient(to top, #ff6600 0%, #fcffe0 100%); */
+	background: transparent;
+	border: 0;
 }
 .hide-pc {
 	display: none;
