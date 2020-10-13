@@ -1,8 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { getUrlParameter } from "../components/common";
 import img_top from "../styles/style3/img/img-top.png";
-import img_bottom from "../styles/style3/img/img-bottom.png";
-import img_bottom_mobile from "../styles/style3/img/img-b.png";
 import { languageContext, i18nContext } from "../components/context";
 import { api_site_ExistsUserName } from "../service/api/site";
 import config from "../config";
@@ -176,7 +174,7 @@ export default () => {
 					</div>
 					<form onSubmit={clickSubmit}>
 						<div className="text-head-form">
-							<h2>Đăng ký</h2>
+							<h2>{i18n["lbl_Register"]}</h2>
 						</div>
 						<div className="input-list">
 							<div className="form-input">
@@ -241,7 +239,7 @@ export default () => {
 								) : null}
 							</div>
 							<button type="submit" onClick={clickSubmit}>
-								<span>{i18n["lbl_JoinNow"]}</span>
+								<span>{i18n["lbl_Register"]} + 10TR</span>
 							</button>
 						</div>
 					</form>
@@ -299,14 +297,6 @@ export default () => {
 							onChange={() => {}}
 						/>
 					</form>
-					<div className="img-bottom text-center">
-						<img src={img_bottom} alt="img_bottom" />
-						<img
-							className="hide-pc"
-							src={img_bottom_mobile}
-							alt="img_bottom_mobile"
-						/>
-					</div>
 				</div>
 			</div>
 		</div>
