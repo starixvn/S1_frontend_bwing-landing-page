@@ -7,19 +7,16 @@ import config from "../config";
 import Inputbox from "../components/inputbox";
 import InputboxPsw from "../components/inputbox.password";
 import TandC from "../service/t_and_c";
-import Checkbox from "../components/checkbox";
 import btnImg from "../styles/style3/img/CTA1.png";
 
 const initValue = {
 	username: "",
 	password: "",
-	checkbox: false
 };
 
 const initTip = {
 	username: "",
 	password: "",
-	checkbox: ""
 };
 
 export default () => {
@@ -135,31 +132,19 @@ export default () => {
 		return { checked, msg };
 	};
 
-	const checkboxHandler = () => {
-		let checked = !userValue.checkbox;
-		setUserValue(prev => {
-			return { ...prev, checkbox: checked };
-		});
-	};
 
 	const clickSubmit = async e => {
 		e.preventDefault();
 		let _usernameCheck = await usernameCheck(userValue.username);
 		let _passwordCheck = passwordCheck(userValue.password);
-		let _checkboxCheck = userValue.checkbox;
 
 		let checked =
-			_usernameCheck.checked && _passwordCheck.checked && _checkboxCheck;
+			_usernameCheck.checked && _passwordCheck.checked
 
 		if (!checked) {
-			let checkboxMsg = "";
-			if (!_checkboxCheck) {
-				checkboxMsg = "lbl_Check18TCTooltip";
-			}
 			setTip({
 				username: i18n[_usernameCheck.msg],
 				password: i18n[_passwordCheck.msg],
-				checkbox: i18n[checkboxMsg]
 			});
 		} else {
 			xxxRef.current.submit();
@@ -205,40 +190,7 @@ export default () => {
 								/>
 							</div>
 
-							<div className="form-input check-q">
-								<Checkbox
-									checked={userValue.checkbox}
-									onChange={checkboxHandler}
-									id="c1">
-									<label htmlFor="">
-										{i18n["lbl_Check18TC1"]}{" "}
-										<span>
-											<a
-												target="_blank"
-												href={TandC(language).terms}
-												rel="noopener noreferrer">
-												{i18n["lbl_TermsConditions"]}
-											</a>{" "}
-										</span>
-										và&nbsp;
-										<span>
-											<a
-												target="_blank"
-												href={TandC(language).rule}
-												rel="noopener noreferrer">
-												{i18n["lbl_RuleRegulations"]}
-											</a>
-										</span>{" "}
-										của Bwing. Tôi xác nhận tôi đã trên 21
-										tuổi.
-									</label>
-								</Checkbox>
-								{tip.checkbox !== "" ? (
-									<div className="tip active">
-										{tip.checkbox}
-									</div>
-								) : null}
-							</div>
+						
 							<button type="submit" onClick={clickSubmit}>
 								<img src={btnImg} />
 							</button>
