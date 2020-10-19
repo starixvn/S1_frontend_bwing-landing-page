@@ -76,6 +76,15 @@ li{
 	cursor: pointer;
 	transform: translateY(-28px);
 }
+
+.check-pass .pw {
+	position: absolute;
+	margin-top: -28px;
+	right: 10px;
+	color: #111;
+	cursor: pointer;
+}
+
 .tip{
 	color: red;
 }
