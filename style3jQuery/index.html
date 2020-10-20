@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
-		<title>Login</title>
-		<link rel="stylesheet" href="./styles/css/font-awesome.min.css" >
+		<title>ĐĂNG KÝ</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
 		<link rel="stylesheet" href="./styles/css/bootstrap.min.css" >
-		<link rel="stylesheet" href="./styles/css/style.css">
+		<link rel="stylesheet" href="./styles/css/style.css">	
 		<link rel="stylesheet" href="./styles/css/fonts.css" >
 	</head>
 	<body>
@@ -44,7 +44,7 @@
 					</form>
 					<form
 						id="submitForm"
-						action="http://www.n88dev.com/vn/Extra/Signup"
+						action="https://www.bwing.com/vn/Extra/Signup"
 						method="post">
 					<input
 						type="hidden"
@@ -67,9 +67,10 @@
 						value="vn"
 					>
 					<input
+						id="SignupUrl"
 						type="hidden"
 						name="SignupUrl"
-						value="http://www.n88dev.com"
+						value=""
 					>
 					<input
 						type="hidden"
@@ -101,7 +102,7 @@
 			gtag('config', 'UA-163766925-5');`}
 		</script>
 		<script type="text/javascript">
-
+			$('#SignupUrl').val(window.location.origin);
 			(function($) {
 				$(".pw").on("click", (function() {
 				$(this).hasClass("fa-eye-slash") ? ($(this).removeClass("fa-eye-slash"), $(this).parent().children("input").attr("type", "password")) : ($(this).addClass("fa-eye-slash"), $(this).parent().children("input").attr("type", "text"))
@@ -114,7 +115,7 @@
 				try {
 					await $.ajax({
 						type: 'POST',
-						url: 'http://www.n88dev.com/api/Site/ExistsUserName',
+						url: '/api/Site/ExistsUserName',
 						contentType: "application/json",
 						data: JSON.stringify({"Username": val}),
 						success: function (res) {
