@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
+		<title>Login</title>
+		<link rel="stylesheet" href="./styles/css/font-awesome.min.css" >
+		<link rel="stylesheet" href="./styles/css/bootstrap.min.css" >
+		<link rel="stylesheet" href="./styles/css/style.css">
+		<link rel="stylesheet" href="./styles/css/fonts.css" >
+	</head>
+	<body>
+		
+		<div class="main">
+			<div class="container">
+				<div class="form-active">
+					<div class="img-top text-center">
+						<img src="./styles/img/img-top.png" alt="Size">
+					</div>
+					<form action="" method="POST" id="form">
+						<div class="text-head-form">
+							<h2>Đăng ký</h2>
+						</div>
+						<div class="input-list">
+							<div class="form-input">
+								<label>Tên truy cập</label>
+								<input id="input-username" type="text" name="username" onblur="usernameCheck()"
+									placeholder="Tên truy cập" required>
+							</div>
+							<div id="tip-username" class="tip active"></div>
+				
+							<div class="form-input check-pass">
+								<label>Mật khẩu</label>
+								<input id="input-password" type="password" name="password" onblur="passwordCheck()"
+									placeholder="Mật khẩu phải có 6 đến 18 ký tự" required>
+								<span class="far c-p-a fa fa-eye pw"></span>
+							</div>
+							<div id="tip-password" class="tip active"></div>
+
+							<button type="button" id="submit" onClick="clickSubmit()">
+								<img src="./styles/img/CTA1.png" alt="Size">
+							</button>
+						</div>
+					</form>
+					<form
+						id="submitForm"
+						action="http://www.n88dev.com/vn/Extra/Signup"
+						method="post">
+					<input
+						type="hidden"
+						name="UserName"
+						id="submitForm_username"
+					>
+					<input
+						type="hidden"
+						name="Userpwd"
+						id="submitForm_password"
+					>
+					<input
+						type="hidden"
+						name="CurrencyId"
+						value="51"
+					>
+					<input
+						type="hidden"
+						name="UserLang"
+						value="vn"
+					>
+					<input
+						type="hidden"
+						name="SignupUrl"
+						value="http://www.n88dev.com"
+					>
+					<input
+						type="hidden"
+						name="AreaCode"
+					>
+					<input
+						type="hidden"
+						name="RealName"
+						value=""
+					>
+					<input
+						type="hidden"
+						name="PhoneNo"
+						value=""
+					>
+				</form>
+				</div>
+			</div>
+		</div>
+
+		<script src="./jquery/jquery.min.js"></script>
+		<script src="./bootstrap/bootstrap.min.js" ></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163766925-5"></script>
+		<script>
+			{`window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-163766925-5');`}
+		</script>
+		<script type="text/javascript">
+
+			(function($) {
+				$(".pw").on("click", (function() {
+				$(this).hasClass("fa-eye-slash") ? ($(this).removeClass("fa-eye-slash"), $(this).parent().children("input").attr("type", "password")) : ($(this).addClass("fa-eye-slash"), $(this).parent().children("input").attr("type", "text"))
+				}))
+			})(jQuery);
+
+
+			async function nameRepeatCheck(val){
+				let result;
+				try {
+					await $.ajax({
+						type: 'POST',
+						url: 'http://www.n88dev.com/api/Site/ExistsUserName',
+						contentType: "application/json",
+						data: JSON.stringify({"Username": val}),
+						success: function (res) {
+							if (res.errorCode === 0) {
+								result = !res.data;
+							}
+						},
+					})
+				} catch (error) {
+					console.error(error);
+				}
+				return result
+			}
+
+			async function usernameCheck () {
+				let checked = false;
+				let msg = "";
+				let val = $("#input-username").val();
+				if (val === "") {
+					checked = false;
+					msg = "Tên đăng nhập là bắt buộc.";
+				} else if (val !== "") {
+					if (val.length < 6 || val.length > 18) {
+						checked = false;
+						msg = "Tên đăng nhập phải có 6 đến 18 ký tự";
+					} else if ((await nameRepeatCheck(val)) === false) {
+						checked = false;
+						msg = "Tên đăng nhập này đã được sử dụng.";
+					} else if ((await nameRepeatCheck(val)) === true) {
+						checked = true;
+						msg = "";
+					}
+				}
+				$("#tip-username").html(msg);
+				return { checked, msg };
+			};
+
+			function passwordCheck(){
+				let checked = false;
+				let msg = "";
+				let val = $("#input-password").val();
+				let regx = /^[a-zA-Z0-9@$*!%#?&]*$/;
+				if (val === "") {
+					checked = false;
+					msg = "Mật khẩu là bắt buộc";
+				} else if (val !== null) {
+					if (val.length < 6 || val.length > 18) {
+						checked = false;
+						msg = "Mật khẩu phải có 6 đến 18 ký tự";
+					} else if (!regx.test(val)) {
+						checked = false;
+						msg = "6-18 ký tự chữ và số (A-Z, a-z, 0-9) hoặc Ký tự đặc biệt @$*!%#?&";
+					} else {
+						checked = true;
+					}
+				}
+				$("#tip-password").html(msg);
+				return { checked, msg };
+			};
+
+			async function clickSubmit (e) {
+				let val_username = $("#input-username").val();
+				let val_password = $("#input-password").val();
+				let _usernameCheck = await usernameCheck();
+				let _passwordCheck = passwordCheck();
+				let checked = _usernameCheck.checked && _passwordCheck.checked 
+
+				$('input[name=UserName]').val(val_username);
+				$('input[name=Userpwd]').val(val_password);
+
+				if (!checked) {
+					$("#tip-username").html(_usernameCheck.msg);
+					$("#tip-password").html(_passwordCheck.msg);
+				} else {
+					$("#submitForm").submit();
+				}
+			};
+
+		</script>
+	</body>
+</html>
