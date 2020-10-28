@@ -104,6 +104,26 @@
 		</script>
 		<script type="text/javascript">
 			$('#SignupUrl').val(`${window.location.origin}${window.location.pathname}`);
+
+			$( document ).ready(function() {
+				if(window.location.search.indexOf('message')!==-1){
+					let urlSearchStr = window.location.search
+
+					let errcode_index = urlSearchStr.indexOf('errorCode=')
+					let errorCode_str ="errorCode="
+					let errcode_value = urlSearchStr.substr(errcode_index+(errorCode_str.length),errcode_index+(errorCode_str.length)+2)
+
+					let message_str = "message="
+					let messgge_origin = urlSearchStr.slice(message_str.length+1,errcode_index-1)
+					let messgge_decode = decodeURIComponent(messgge_origin)
+					let messgge_value = messgge_decode.replace(/[+]/g,' ')
+
+					alert(`[${errcode_value}]  ${messgge_value}`)
+				}
+			});
+
+			// http://127.0.0.1:5501/style3jQuery/index.html?message=T%c3%aan+ng%c6%b0%e1%bb%9di+d%c3%b9ng+%c4%91%c3%a3+t%e1%bb%93n+t%e1%ba%a1i&errorCode=-5
+
 			(function($) {
 				$(".pw").on("click", (function() {
 				$(this).hasClass("fa-eye-slash") ? ($(this).removeClass("fa-eye-slash"), $(this).parent().children("input").attr("type", "password")) : ($(this).addClass("fa-eye-slash"), $(this).parent().children("input").attr("type", "text"))
