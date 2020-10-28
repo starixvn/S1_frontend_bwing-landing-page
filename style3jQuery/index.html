@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<title>ĐĂNG KÝ</title>
 		<meta charset="utf-8">
 		<meta name="google-site-verification" content="oGEi-1ui4KhPoLK-MOqDtWDpcLByn6-DBf2u9evs1E0" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
-		<title>ĐĂNG KÝ</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
 		<link rel="stylesheet" href="./styles/css/bootstrap.min.css" >
 		<link rel="stylesheet" href="./styles/css/style.css">	
@@ -103,7 +103,7 @@
 			gtag('config', 'UA-163766925-5');`}
 		</script>
 		<script type="text/javascript">
-			$('#SignupUrl').val(window.location.origin);
+			$('#SignupUrl').val(`${window.location.origin}${window.location.pathname}`);
 			(function($) {
 				$(".pw").on("click", (function() {
 				$(this).hasClass("fa-eye-slash") ? ($(this).removeClass("fa-eye-slash"), $(this).parent().children("input").attr("type", "password")) : ($(this).addClass("fa-eye-slash"), $(this).parent().children("input").attr("type", "text"))
@@ -111,28 +111,28 @@
 			})(jQuery);
 
 
-			async function nameRepeatCheck(val){
-				let result;
-				try {
-					await $.ajax({
-						type: 'POST',
-						url: '/api/Site/ExistsUserName',
-						contentType: "application/json",
-						data: JSON.stringify({"Username": val}),
-						success: function (res) {
-							if (res.errorCode === 0) {
-								result = !res.data;
-							}
-						},
-					})
-				} catch (error) {
-					console.error(error);
-				}
-				return result
-			}
+			// async function nameRepeatCheck(val){
+			// 	let result;
+			// 	try {
+			// 		await $.ajax({
+			// 			type: 'POST',
+			// 			url: '/api/Site/ExistsUserName',
+			// 			contentType: "application/json",
+			// 			data: JSON.stringify({"Username": val}),
+			// 			success: function (res) {
+			// 				if (res.errorCode === 0) {
+			// 					result = !res.data;
+			// 				}
+			// 			},
+			// 		})
+			// 	} catch (error) {
+			// 		console.error(error);
+			// 	}
+			// 	return result
+			// }
 
 			async function usernameCheck () {
-				let checked = false;
+				let checked = true;
 				let msg = "";
 				let val = $("#input-username").val();
 				if (val === "") {
@@ -142,13 +142,14 @@
 					if (val.length < 6 || val.length > 18) {
 						checked = false;
 						msg = "Tên đăng nhập phải có 6 đến 18 ký tự";
-					} else if ((await nameRepeatCheck(val)) === false) {
-						checked = false;
-						msg = "Tên đăng nhập này đã được sử dụng.";
-					} else if ((await nameRepeatCheck(val)) === true) {
-						checked = true;
-						msg = "";
 					}
+					//  else if ((await nameRepeatCheck(val)) === false) {
+					// 	checked = false;
+					// 	msg = "Tên đăng nhập này đã được sử dụng.";
+					// } else if ((await nameRepeatCheck(val)) === true) {
+					// 	checked = true;
+					// 	msg = "";
+					// }
 				}
 				$("#tip-username").html(msg);
 				return { checked, msg };
