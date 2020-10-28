@@ -111,7 +111,7 @@
 
 					let errcode_index = urlSearchStr.indexOf('errorCode=')
 					let errorCode_str ="errorCode="
-					let errcode_value = urlSearchStr.substr(errcode_index+(errorCode_str.length),errcode_index+(errorCode_str.length)+2)
+					let errcode_value = urlSearchStr.slice(errcode_index+(errorCode_str.length),urlSearchStr.length)
 
 					let message_str = "message="
 					let messgge_origin = urlSearchStr.slice(message_str.length+1,errcode_index-1)
