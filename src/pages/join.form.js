@@ -105,15 +105,12 @@ export default () => {
 		let checked = false;
 		let msg = "";
 
-		const regx = /^[a-zA-Z0-9@$*!%#?&]*$/;
+		const regx = /^(?=.{6,15}$)(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*]).*$/;
 		if (val === "") {
 			checked = false;
 			msg = "msg_PasswordReq";
 		} else if (val != null) {
-			if (val.length < 6 || val.length > 18) {
-				checked = false;
-				msg = "msg_PasswordLength";
-			} else if (!regx.test(val)) {
+			if (!regx.test(val)) {
 				checked = false;
 				msg = "msg_PasswordVaildate";
 			} else {

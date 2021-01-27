@@ -11,12 +11,12 @@ import btnImg from "../styles/style3/img/CTA1.png";
 
 const initValue = {
 	username: "",
-	password: "",
+	password: ""
 };
 
 const initTip = {
 	username: "",
-	password: "",
+	password: ""
 };
 
 export default () => {
@@ -114,15 +114,12 @@ export default () => {
 		let checked = false;
 		let msg = "";
 
-		const regx = /^[a-zA-Z0-9@$*!%#?&]*$/;
+		const regx = /^(?=.{6,15}$)(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*]).*$/;
 		if (val === "") {
 			checked = false;
 			msg = "msg_PasswordReq";
 		} else if (val != null) {
-			if (val.length < 6 || val.length > 18) {
-				checked = false;
-				msg = "msg_PasswordLength";
-			} else if (!regx.test(val)) {
+			if (!regx.test(val)) {
 				checked = false;
 				msg = "msg_PasswordVaildate";
 			} else {
@@ -132,19 +129,17 @@ export default () => {
 		return { checked, msg };
 	};
 
-
 	const clickSubmit = async e => {
 		e.preventDefault();
 		let _usernameCheck = await usernameCheck(userValue.username);
 		let _passwordCheck = passwordCheck(userValue.password);
 
-		let checked =
-			_usernameCheck.checked && _passwordCheck.checked
+		let checked = _usernameCheck.checked && _passwordCheck.checked;
 
 		if (!checked) {
 			setTip({
 				username: i18n[_usernameCheck.msg],
-				password: i18n[_passwordCheck.msg],
+				password: i18n[_passwordCheck.msg]
 			});
 		} else {
 			xxxRef.current.submit();
@@ -190,7 +185,6 @@ export default () => {
 								/>
 							</div>
 
-						
 							<button type="submit" onClick={clickSubmit}>
 								<img src={btnImg} />
 							</button>

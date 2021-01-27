@@ -17,7 +17,7 @@ export default {
 	msg_PasswordReq: "Password is required.",
 	msg_PasswordLength: "Password must between 6 and 18 characters long.",
 	msg_PasswordVaildate:
-		"6-18 alphanumeric (A-Z, a-z, 0-9) characters or special characters @$*!%#?&",
+		"Password must be 6-15 characters, contain both alphanumeric and a special characters (!@#$%^&*).",
 	msg_MailWrongFormat: "Mail Format is wrong.",
 	lbl_Check18TCTooltip:
 		"Please click the above checkbox to confirm the account registration requirements",

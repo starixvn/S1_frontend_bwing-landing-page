@@ -17,7 +17,7 @@ export default {
 	msg_PasswordReq: "Mật khẩu là bắt buộc",
 	msg_PasswordLength: "Mật khẩu phải có 6 đến 18 ký tự",
 	msg_PasswordVaildate:
-		"6-18 ký tự chữ và số (A-Z, a-z, 0-9) hoặc Ký tự đặc biệt @$*!%#?&",
+		"Mật khẩu phải có từ 6-15 ký tự, bao gồm cả chữ, số và ký tự đặc biệt (!@#$%^&*)",
 	msg_MailWrongFormat: "Định dạng email không đúng",
 	lbl_Check18TCTooltip:
 		"Vui lòng bấm vào ô bên trên để xác nhận các yêu cầu đăng ký tài khoản.",
