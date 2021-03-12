@@ -5,6 +5,7 @@ export default {
 	lbl_Register: "ĐĂNG KÝ",
 	lbl_Username: "Tên truy cập",
 	lbl_Password: "Mật khẩu",
+	lbl_Phone: "Số ĐT",
 	msg_pswRemind: "Tối thiểu 8 ký tự",
 	lbl_Check18TC1: "Tôi đồng ý với",
 	lbl_Check18TC2: "và",
@@ -25,5 +26,9 @@ export default {
 	msg_MailExisted: "Địa chỉ Email này đã được sử dụng.",
 	lbl_Millions: "CỦ",
 	lbl_PromoTitle: "THƯỞNG NGAY 125% cho lần nạp đầu",
-	lbl_PromoDesc: "Tặng ngay 300k khi lập tài khoản"
+	lbl_PromoDesc: "Tặng ngay 300k khi lập tài khoản",
+	lbl_CantChangePhone:
+		"Bạn không thể sửa số điện thoại. Vui lòng điền số đúng để giao dịch được suôn sẻ.",
+	lbl_PhoneRequired: "Vui lòng nhập số điện thoại",
+	msg_PhoneExisted: "Số điện thoại này đã được sử dụng"
 };

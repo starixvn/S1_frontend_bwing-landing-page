@@ -2,22 +2,30 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { getUrlParameter } from "../components/common";
 import img_top from "../styles/style3/img/img-top.png";
 import { languageContext, i18nContext } from "../components/context";
-import { api_site_ExistsUserName } from "../service/api/site";
+import {
+	api_site_ExistsUserName,
+	api_site_ExistsPhoneNo
+} from "../service/api/site";
 import config from "../config";
 import Inputbox from "../components/inputbox";
 import InputboxPsw from "../components/inputbox.password";
-import TandC from "../service/t_and_c";
+// import TandC from "../service/t_and_c";
 import btnImg from "../styles/style3/img/CTA1.png";
 
 const initValue = {
 	username: "",
-	password: ""
+	password: "",
+	phone: ""
 };
 
 const initTip = {
 	username: "",
-	password: ""
+	password: "",
+	phone: ""
 };
+
+const CurrencyId = 51;
+const _areaCode = "+84";
 
 export default () => {
 	useEffect(() => {
@@ -64,6 +72,9 @@ export default () => {
 		} else if (col === "password") {
 			let result = passwordCheck(val);
 			msg = result.msg;
+		} else if (col === "phone") {
+			let result = await phoneCheck(val);
+			msg = result.msg;
 		}
 
 		if (tip[col] !== i18n[msg]) {
@@ -105,6 +116,33 @@ export default () => {
 			} else if ((await nameRepeatCheck(val)) === true) {
 				checked = true;
 				msg = "";
+			}
+		}
+		return { checked, msg };
+	};
+
+	const phoneCheck = async val => {
+		let checked = false;
+		let msg = "";
+		if (val === "") {
+			checked = false;
+			msg = "lbl_PhoneRequired";
+		} else if (val.length > 0 && val.length < 9) {
+			checked = false;
+			msg = "lbl_CantChangePhone";
+		} else {
+			const res = await api_site_ExistsPhoneNo({
+				AreaCode: _areaCode,
+				Phone: val
+			});
+			if (res.data.errorCode === 0) {
+				if (!res.data.data === false) {
+					checked = false;
+					msg = "msg_PhoneExisted";
+				} else {
+					checked = true;
+					// msg = "lbl_CantChangePhone";
+				}
 			}
 		}
 		return { checked, msg };
@@ -184,6 +222,16 @@ export default () => {
 									customizedEye={true}
 								/>
 							</div>
+							<div className="form-input">
+								<label>{i18n["lbl_Phone"]}</label>
+								<Inputbox
+									placeholder={_areaCode}
+									value={userValue.phone}
+									tip={tip.phone}
+									onChange={EditField.bind(null, "phone")}
+									onBlur={checkValue.bind(null, "phone")}
+								/>
+							</div>
 
 							<button type="submit" onClick={clickSubmit}>
 								<img src={btnImg} />
@@ -206,11 +254,23 @@ export default () => {
 							value={userValue.password}
 							onChange={() => {}}
 						/>
+						<input
+							type="hidden"
+							name="AreaCode"
+							value={_areaCode}
+							onChange={() => {}}
+						/>
+						<input
+							type="hidden"
+							name="PhoneNo"
+							value={userValue.phone}
+							onChange={() => {}}
+						/>
 
 						<input
 							type="hidden"
 							name="CurrencyId"
-							value={51}
+							value={CurrencyId}
 							onChange={() => {}}
 						/>
 						<input
@@ -225,12 +285,7 @@ export default () => {
 							value={window.location.host}
 							onChange={() => {}}
 						/>
-						<input
-							type="hidden"
-							name="AreaCode"
-							value={""}
-							onChange={() => {}}
-						/>
+
 						<input
 							type="hidden"
 							name="RealName"

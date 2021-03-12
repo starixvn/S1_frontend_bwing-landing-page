@@ -1,6 +1,9 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { languageContext, i18nContext } from "../components/context";
-import { api_site_ExistsUserName } from "../service/api/site";
+import {
+	api_site_ExistsUserName,
+	api_site_ExistsPhoneNo
+} from "../service/api/site";
 import TandC from "../service/t_and_c";
 import Inputbox from "../components/inputbox";
 import InputboxPsw from "../components/inputbox.password";
@@ -10,14 +13,19 @@ import config from "../config";
 const initValue = {
 	username: "",
 	password: "",
+	phone: "",
 	checkbox: false
 };
 
 const initTip = {
 	username: "",
 	password: "",
+	phone: "",
 	checkbox: ""
 };
+
+const CurrencyId = 51;
+const _areaCode = "+84";
 
 export default () => {
 	const { language } = useContext(languageContext);
@@ -54,6 +62,9 @@ export default () => {
 			msg = result.msg;
 		} else if (col === "password") {
 			let result = passwordCheck(val);
+			msg = result.msg;
+		} else if (col === "phone") {
+			let result = await phoneCheck(val);
 			msg = result.msg;
 		}
 
@@ -120,6 +131,33 @@ export default () => {
 		return { checked, msg };
 	};
 
+	const phoneCheck = async val => {
+		let checked = false;
+		let msg = "";
+		if (val === "") {
+			checked = false;
+			msg = "lbl_PhoneRequired";
+		} else if (val.length > 0 && val.length < 9) {
+			checked = false;
+			msg = "lbl_CantChangePhone";
+		} else {
+			const res = await api_site_ExistsPhoneNo({
+				AreaCode: _areaCode,
+				Phone: val
+			});
+			if (res.data.errorCode === 0) {
+				if (!res.data.data === false) {
+					checked = false;
+					msg = "msg_PhoneExisted";
+				} else {
+					checked = true;
+					// msg = "lbl_CantChangePhone";
+				}
+			}
+		}
+		return { checked, msg };
+	};
+
 	const checkboxHandler = () => {
 		let checked = !userValue.checkbox;
 		setUserValue(prev => {
@@ -131,10 +169,14 @@ export default () => {
 		e.preventDefault();
 		let _usernameCheck = await usernameCheck(userValue.username);
 		let _passwordCheck = passwordCheck(userValue.password);
+		let _phoneCheck = await phoneCheck(userValue.phone);
 		let _checkboxCheck = userValue.checkbox;
 
 		let checked =
-			_usernameCheck.checked && _passwordCheck.checked && _checkboxCheck;
+			_usernameCheck.checked &&
+			_passwordCheck.checked &&
+			_phoneCheck.checked &&
+			_checkboxCheck;
 
 		if (!checked) {
 			let checkboxMsg = "";
@@ -144,6 +186,7 @@ export default () => {
 			setTip({
 				username: i18n[_usernameCheck.msg],
 				password: i18n[_passwordCheck.msg],
+				phone: i18n[_phoneCheck.msg],
 				checkbox: i18n[checkboxMsg]
 			});
 		} else {
@@ -173,7 +216,14 @@ export default () => {
 					onBlur={checkValue.bind(null, "password")}
 					showPswHandler={showPswHandler}
 				/>
-
+				<Inputbox
+					displayText={i18n["lbl_Phone"]}
+					placeholder={_areaCode}
+					value={userValue.phone}
+					tip={tip.phone}
+					onChange={EditField.bind(null, "phone")}
+					onBlur={checkValue.bind(null, "phone")}
+				/>
 				<Checkbox
 					checked={userValue.checkbox}
 					onChange={checkboxHandler}
@@ -217,11 +267,22 @@ export default () => {
 					value={userValue.password}
 					onChange={() => {}}
 				/>
-
+				<input
+					type="hidden"
+					name="AreaCode"
+					value={_areaCode}
+					onChange={() => {}}
+				/>
+				<input
+					type="hidden"
+					name="PhoneNo"
+					value={userValue.phone}
+					onChange={() => {}}
+				/>
 				<input
 					type="hidden"
 					name="CurrencyId"
-					value={51}
+					value={CurrencyId}
 					onChange={() => {}}
 				/>
 				<input
@@ -236,12 +297,7 @@ export default () => {
 					value={window.location.host}
 					onChange={() => {}}
 				/>
-				<input
-					type="hidden"
-					name="AreaCode"
-					value={""}
-					onChange={() => {}}
-				/>
+
 				<input
 					type="hidden"
 					name="RealName"

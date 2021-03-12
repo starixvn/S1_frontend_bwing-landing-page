@@ -38,6 +38,13 @@
 							</div>
 							<div id="tip-password" class="tip active"></div>
 
+							<div class="form-input">
+								<label>Số ĐT"</label>
+								<input id="input-phone" type="text" name="phone" onblur="phoneCheck()"
+									placeholder="+84" required>
+							</div>
+							<div id="tip-phone" class="tip active"></div>
+
 							<button type="button" id="submit" onClick="clickSubmit()">
 								<img src="./styles/img/CTA1.png" alt="Size">
 							</button>
@@ -50,13 +57,20 @@
 					<input
 						type="hidden"
 						name="UserName"
-						id="submitForm_username"
 					>
 					<input
 						type="hidden"
 						name="Userpwd"
-						id="submitForm_password"
 					>
+					<input
+						type="hidden"
+						name="AreaCode"
+						value="+84"
+					>
+					<input
+						type="hidden"
+						name="PhoneNo"
+					/>
 					<input
 						type="hidden"
 						name="CurrencyId"
@@ -75,16 +89,7 @@
 					>
 					<input
 						type="hidden"
-						name="AreaCode"
-					>
-					<input
-						type="hidden"
 						name="RealName"
-						value=""
-					>
-					<input
-						type="hidden"
-						name="PhoneNo"
 						value=""
 					>
 				</form>
@@ -179,17 +184,14 @@
 				let checked = false;
 				let msg = "";
 				let val = $("#input-password").val();
-				let regx = /^[a-zA-Z0-9@$*!%#?&]*$/;
+				let regx = /^(?=.{6,15}$)(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*]).*$/;
 				if (val === "") {
 					checked = false;
 					msg = "Mật khẩu là bắt buộc";
 				} else if (val !== null) {
-					if (val.length < 6 || val.length > 18) {
+					 if (!regx.test(val)) {
 						checked = false;
-						msg = "Mật khẩu phải có 6 đến 18 ký tự";
-					} else if (!regx.test(val)) {
-						checked = false;
-						msg = "6-18 ký tự chữ và số (A-Z, a-z, 0-9) hoặc Ký tự đặc biệt @$*!%#?&";
+						msg = "Mật khẩu phải có từ 6-15 ký tự, bao gồm cả chữ, số và ký tự đặc biệt (!@#$%^&*)";
 					} else {
 						checked = true;
 					}
@@ -198,19 +200,35 @@
 				return { checked, msg };
 			};
 
+			function phoneCheck(){
+				let checked = true;
+				let msg = "";
+				let val = $("#input-phone").val();
+				if (val === "") {
+					checked = false;
+					msg = "Vui lòng nhập số điện thoại";
+				} 
+				$("#tip-phone").html(msg);
+				return { checked, msg };
+			}
+
 			async function clickSubmit (e) {
 				let val_username = $("#input-username").val();
 				let val_password = $("#input-password").val();
+				let val_phone = $("#input-phone").val();
 				let _usernameCheck = await usernameCheck();
 				let _passwordCheck = passwordCheck();
-				let checked = _usernameCheck.checked && _passwordCheck.checked 
-
+				let _phoneCheck =  phoneCheck();
+				let checked = _usernameCheck.checked && _passwordCheck.checked && _phoneCheck.checked
+			
 				$('input[name=UserName]').val(val_username);
 				$('input[name=Userpwd]').val(val_password);
+				$('input[name=PhoneNo]').val(val_phone);
 
 				if (!checked) {
 					$("#tip-username").html(_usernameCheck.msg);
 					$("#tip-password").html(_passwordCheck.msg);
+					$("#tip-phone").html(_phoneCheck.msg);
 				} else {
 					$("#submitForm").submit();
 				}

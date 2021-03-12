@@ -5,6 +5,7 @@ export default {
 	lbl_Register: "REGISTER",
 	lbl_Username: "Username",
 	lbl_Password: "Password",
+	lbl_Phone: "Phone Number",
 	msg_pswRemind: "At least 8 characters",
 	lbl_Check18TC1: "I agree to the",
 	lbl_Check18TC2: "and the",
@@ -25,5 +26,10 @@ export default {
 	msg_MailExisted: "Mail already exists.",
 	lbl_Millions: "MILLIONS",
 	lbl_PromoTitle: "125% first deposit offer",
-	lbl_PromoDesc: "Open account today get VND300k right away for unlimited fun"
+	lbl_PromoDesc:
+		"Open account today get VND300k right away for unlimited fun",
+	lbl_CantChangePhone:
+		"Phone can’t be changed after registration. Input the valid one for smooth withdrawal.",
+	lbl_PhoneRequired: "Please fill in the phone field",
+	msg_PhoneExisted: "Phone number already exists."
 };
