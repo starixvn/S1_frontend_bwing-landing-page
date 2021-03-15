@@ -297,16 +297,9 @@ export default () => {
 					value={window.location.host}
 					onChange={() => {}}
 				/>
-
 				<input
 					type="hidden"
 					name="RealName"
-					value={""}
-					onChange={() => {}}
-				/>
-				<input
-					type="hidden"
-					name="PhoneNo"
 					value={""}
 					onChange={() => {}}
 				/>

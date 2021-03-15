@@ -121,6 +121,25 @@ export default () => {
 		return { checked, msg };
 	};
 
+	const passwordCheck = val => {
+		let checked = false;
+		let msg = "";
+
+		const regx = /^(?=.{6,15}$)(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*]).*$/;
+		if (val === "") {
+			checked = false;
+			msg = "msg_PasswordReq";
+		} else if (val != null) {
+			if (!regx.test(val)) {
+				checked = false;
+				msg = "msg_PasswordVaildate";
+			} else {
+				checked = true;
+			}
+		}
+		return { checked, msg };
+	};
+
 	const phoneCheck = async val => {
 		let checked = false;
 		let msg = "";
@@ -148,36 +167,22 @@ export default () => {
 		return { checked, msg };
 	};
 
-	const passwordCheck = val => {
-		let checked = false;
-		let msg = "";
-
-		const regx = /^(?=.{6,15}$)(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*]).*$/;
-		if (val === "") {
-			checked = false;
-			msg = "msg_PasswordReq";
-		} else if (val != null) {
-			if (!regx.test(val)) {
-				checked = false;
-				msg = "msg_PasswordVaildate";
-			} else {
-				checked = true;
-			}
-		}
-		return { checked, msg };
-	};
-
 	const clickSubmit = async e => {
 		e.preventDefault();
 		let _usernameCheck = await usernameCheck(userValue.username);
 		let _passwordCheck = passwordCheck(userValue.password);
+		let _phoneCheck = await phoneCheck(userValue.phone);
 
-		let checked = _usernameCheck.checked && _passwordCheck.checked;
+		let checked =
+			_usernameCheck.checked &&
+			_passwordCheck.checked &&
+			_phoneCheck.checked;
 
 		if (!checked) {
 			setTip({
 				username: i18n[_usernameCheck.msg],
-				password: i18n[_passwordCheck.msg]
+				password: i18n[_passwordCheck.msg],
+				phone: i18n[_phoneCheck.msg]
 			});
 		} else {
 			xxxRef.current.submit();
@@ -266,7 +271,6 @@ export default () => {
 							value={userValue.phone}
 							onChange={() => {}}
 						/>
-
 						<input
 							type="hidden"
 							name="CurrencyId"
@@ -285,16 +289,9 @@ export default () => {
 							value={window.location.host}
 							onChange={() => {}}
 						/>
-
 						<input
 							type="hidden"
 							name="RealName"
-							value={""}
-							onChange={() => {}}
-						/>
-						<input
-							type="hidden"
-							name="PhoneNo"
 							value={""}
 							onChange={() => {}}
 						/>

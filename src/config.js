@@ -7,7 +7,7 @@ export const defStyle = {
 export const SiteStyle =
 	process.env.NODE_ENV === "production"
 		? defStyle[`style${process.env.REACT_APP_STYLE}`]
-		: defStyle.style3;
+		: defStyle.style1;
 
 export default process.env.NODE_ENV === "production"
 	? {

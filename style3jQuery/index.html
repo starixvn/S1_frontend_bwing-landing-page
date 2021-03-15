@@ -156,7 +156,7 @@
 			// 	return result
 			// }
 
-			async function usernameCheck () {
+			function usernameCheck () {
 				let checked = true;
 				let msg = "";
 				let val = $("#input-username").val();
@@ -201,26 +201,31 @@
 			};
 
 			function phoneCheck(){
-				let checked = true;
+				let checked = false;
 				let msg = "";
 				let val = $("#input-phone").val();
 				if (val === "") {
 					checked = false;
 					msg = "Vui lòng nhập số điện thoại";
-				} 
+				}  else if (val.length > 0 && val.length < 9) {
+					checked = false;
+					msg = "Bạn không thể sửa số điện thoại. Vui lòng điền số đúng để giao dịch được suôn sẻ.";
+				}
+				else{
+					checked = true;
+				}
 				$("#tip-phone").html(msg);
 				return { checked, msg };
 			}
 
-			async function clickSubmit (e) {
+			function clickSubmit (e) {
 				let val_username = $("#input-username").val();
 				let val_password = $("#input-password").val();
 				let val_phone = $("#input-phone").val();
-				let _usernameCheck = await usernameCheck();
+				let _usernameCheck = usernameCheck();
 				let _passwordCheck = passwordCheck();
 				let _phoneCheck =  phoneCheck();
 				let checked = _usernameCheck.checked && _passwordCheck.checked && _phoneCheck.checked
-			
 				$('input[name=UserName]').val(val_username);
 				$('input[name=Userpwd]').val(val_password);
 				$('input[name=PhoneNo]').val(val_phone);
