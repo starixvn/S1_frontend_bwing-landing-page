@@ -9,10 +9,22 @@ export const SiteStyle =
 		? defStyle[`style${process.env.REACT_APP_STYLE}`]
 		: defStyle.style1;
 
+const isMobileDevice = () => {
+	if (
+		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+			navigator.userAgent
+		)
+	) {
+		return true;
+	} else {
+		return false;
+	}
+};
+
 export default process.env.NODE_ENV === "production"
 	? {
 			apiURL: "",
-			openURL: "https://www.bwing.com",
+			openURL: `https://${isMobileDevice() ? "m" : "www"}.bwing.com`,
 			imgUrl: "",
 			t_and_cURL: ""
 	  }

@@ -52,8 +52,9 @@
 					</form>
 					<form
 						id="submitForm"
-						action="https://www.bwing.com/vn/Extra/Signup"
-						method="post">
+						action=""
+						method="post"
+						>
 					<input
 						type="hidden"
 						name="UserName"
@@ -127,15 +128,13 @@
 				}
 			});
 
-			// http://127.0.0.1:5501/style3jQuery/index.html?message=T%c3%aan+ng%c6%b0%e1%bb%9di+d%c3%b9ng+%c4%91%c3%a3+t%e1%bb%93n+t%e1%ba%a1i&errorCode=-5
-
 			(function($) {
 				$(".pw").on("click", (function() {
 				$(this).hasClass("fa-eye-slash") ? ($(this).removeClass("fa-eye-slash"), $(this).parent().children("input").attr("type", "password")) : ($(this).addClass("fa-eye-slash"), $(this).parent().children("input").attr("type", "text"))
 				}))
 			})(jQuery);
 
-
+			
 			// async function nameRepeatCheck(val){
 			// 	let result;
 			// 	try {
@@ -235,7 +234,20 @@
 					$("#tip-password").html(_passwordCheck.msg);
 					$("#tip-phone").html(_phoneCheck.msg);
 				} else {
+					getSingUpUrlByDevice()
 					$("#submitForm").submit();
+				}
+			};
+
+			function getSingUpUrlByDevice(val) {
+				if (
+					/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+						navigator.userAgent
+					)
+				) {
+					document.getElementById('submitForm').action = "https://m.bwing.com/vn/Extra/Signup";
+				} else {
+					document.getElementById('submitForm').action = "https://www.bwing.com/vn/Extra/Signup";
 				}
 			};
 
