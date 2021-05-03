@@ -70,7 +70,7 @@ export default () => {
 
 		if (tip[col] !== i18n[msg]) {
 			setTip(prev => {
-				return { ...prev, [col]: i18n[msg] };
+				return { ...prev, [col]: col === "username" ? msg : i18n[msg] };
 			});
 		}
 	};
@@ -80,7 +80,7 @@ export default () => {
 			const res = await api_site_ExistsUserName({ UserName: val });
 			if (isMountedRef.current) {
 				if (res.data.errorCode === 0) {
-					return !res.data.data;
+					return { result: !res.data.data, msg: res.data.message };
 				}
 			}
 		} catch (error) {
@@ -91,22 +91,19 @@ export default () => {
 	};
 
 	const usernameCheck = async val => {
-		let checked = false;
+		let checked = true;
 		let msg = "";
-
 		if (val === "") {
 			checked = false;
-			msg = "msg_UsernameReq";
+			msg = "Tên đăng nhập là bắt buộc.";
 		} else if (val !== "") {
+			const result_nameRepeatCheck = await nameRepeatCheck(val);
 			if (val.length < 6 || val.length > 18) {
 				checked = false;
-				msg = "msg_UsernameLength";
-			} else if ((await nameRepeatCheck(val)) === false) {
+				msg = "6-18 ký tự chữ và số (A-Z, a-z, 0-9)";
+			} else if (result_nameRepeatCheck.result === false) {
 				checked = false;
-				msg = "msg_UsernameNotAvailable";
-			} else if ((await nameRepeatCheck(val)) === true) {
-				checked = true;
-				msg = "";
+				msg = result_nameRepeatCheck.msg;
 			}
 		}
 		return { checked, msg };
@@ -184,7 +181,7 @@ export default () => {
 				checkboxMsg = "lbl_Check18TCTooltip";
 			}
 			setTip({
-				username: i18n[_usernameCheck.msg],
+				username: _usernameCheck.msg,
 				password: i18n[_passwordCheck.msg],
 				phone: i18n[_phoneCheck.msg],
 				checkbox: i18n[checkboxMsg]
