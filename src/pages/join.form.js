@@ -47,6 +47,9 @@ export default () => {
 
 	const EditField = (col, e) => {
 		let val = e.target.value;
+		if (col === "username") {
+			val = val.replace(/[\W]/g, "");
+		}
 		setUserValue(prev => ({
 			...prev,
 			[col]: val
