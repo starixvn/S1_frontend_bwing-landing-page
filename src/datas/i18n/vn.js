@@ -31,6 +31,5 @@ export default {
 		"Bạn không thể sửa số điện thoại. Vui lòng điền số đúng để giao dịch được suôn sẻ.",
 	lbl_PhoneRequired: "Vui lòng nhập số điện thoại",
 	msg_PhoneExisted: "Số điện thoại này đã được sử dụng",
-	lbl_PasswordTooltip:
-		"Mật khẩu phải có 6-15 ký tự, chỉ được bao gồm chữ và số."
+	lbl_PasswordTooltip: "Mật khẩu phải có 6-15 ký tự."
 };

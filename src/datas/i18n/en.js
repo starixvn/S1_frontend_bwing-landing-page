@@ -32,6 +32,5 @@ export default {
 		"Phone can’t be changed after registration. Input the valid one for smooth withdrawal.",
 	lbl_PhoneRequired: "Please fill in the phone field",
 	msg_PhoneExisted: "Phone number already exists.",
-	lbl_PasswordTooltip:
-		"Password must be 6-15 characters and contains alpha numeric only."
+	lbl_PasswordTooltip: "Password must be 6-15 characters only."
 };
