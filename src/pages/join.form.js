@@ -27,6 +27,25 @@ const initTip = {
 const CurrencyId = 51;
 const _areaCode = "+84";
 
+export const passwordCheck = val => {
+	let checked = false;
+	let msg = "";
+
+	const regx = /^(?=.{6,15}$)[a-zA-Z0-9!@#$%^&*]*$/;
+	if (val === "") {
+		checked = false;
+		msg = "msg_PasswordReq";
+	} else if (val != null) {
+		if (!regx.test(val)) {
+			checked = false;
+			msg = "lbl_PasswordTooltip";
+		} else {
+			checked = true;
+		}
+	}
+	return { checked, msg };
+};
+
 export default () => {
 	const { language } = useContext(languageContext);
 	const { i18n } = useContext(i18nContext);
@@ -112,25 +131,6 @@ export default () => {
 		return { checked, msg };
 	};
 
-	const passwordCheck = val => {
-		let checked = false;
-		let msg = "";
-
-		const regx = /^(?=.{6,15}$)[a-zA-Z0-9!@#$%^&*]*$/;
-		if (val === "") {
-			checked = false;
-			msg = "msg_PasswordReq";
-		} else if (val != null) {
-			if (!regx.test(val)) {
-				checked = false;
-				msg = "lbl_PasswordTooltip";
-			} else {
-				checked = true;
-			}
-		}
-		return { checked, msg };
-	};
-
 	const phoneCheck = async val => {
 		let checked = false;
 		let msg = "";
@@ -207,7 +207,7 @@ export default () => {
 				/>
 				<InputboxPsw
 					displayText={i18n["lbl_Password"]}
-					placeholder={i18n["msg_PasswordLength"]}
+					placeholder={i18n["lbl_PasswordTooltip"]}
 					showPsw={showPsw}
 					inputType={`${!showPsw ? "password" : "text"}`}
 					value={userValue.password}
